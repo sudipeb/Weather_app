@@ -7,37 +7,41 @@ class SnowyDay extends StatelessWidget {
   @override
   Widget build(context) {
     //return an container
-    return Container(
-      //Make this widget as tall as possible within the available space.
-      height: double.infinity,  
+    return Stack(
+      fit: StackFit.expand,
+      // Center children vertically
+      children: [
+        Image.asset(AssetsConstants.homeSvg, fit: BoxFit.fill),
 
-      //Make this widget as wide as possible within the available space.
-      width: double.infinity,
+        // Adds vertical spacing between image and text(optional)
+        SizedBox(height: 10),
 
-      //used decoration to use the gradient in background of the container
-      // decoration: BoxDecoration(gradient: ColorConstants.bodyGradient),
+        // Displays a heading text with custom styling
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
 
-      // A Column to arrange children vertically in the center of the screen
-      child: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.center, // Center children vertically
-        children: [
-          Image.asset(AssetsConstants.homeSvg, fit: BoxFit.fill),
-
-          // Adds vertical spacing between image and text(optional)
-          SizedBox(height: 10),
-
-          // Displays a heading text with custom styling
-          Text(
-            'Stay one step ahead of the storm',
-            style: TextStyle(
-              color: Colors.deepPurple, // Text color
-              fontWeight: FontWeight.bold, // Bold font weight
-              fontSize: 24, // Font size
+            child: Text(
+              'Stay one step ahead of the storm',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    offset: Offset(1, 1),
+                    blurRadius: 4,
+                    color: Colors.black87,
+                  ),
+                ],
+              ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

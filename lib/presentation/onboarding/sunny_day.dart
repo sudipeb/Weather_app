@@ -21,14 +21,7 @@ class SunnyDay extends StatelessWidget {
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            // Optional: gradient background for better readability
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.transparent, Colors.black54],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
+
             child: Text(
               'Stay one step ahead of the storm',
               textAlign: TextAlign.center,
@@ -36,13 +29,13 @@ class SunnyDay extends StatelessWidget {
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                // shadows: [
-                //   Shadow(
-                //     offset: Offset(1, 1),
-                //     blurRadius: 4,
-                //     color: Colors.black87,
-                //   ),
-                // ],
+                shadows: [
+                  Shadow(
+                    offset: Offset(1, 1),
+                    blurRadius: 4,
+                    color: Colors.black87,
+                  ),
+                ],
               ),
             ),
           ),
