@@ -28,12 +28,15 @@ class AssetsConstants {
 /// holds color and gradient constants used throughout the app
 class ColorConstants {
   ///background color set to white using hex value
-  static const Color backGroundColor = Color(0xFFFFFFFF);
+  static const Color backGroundColor = Color.fromARGB(255, 123, 74, 229);
 
   ///created the gradient using the hex value
   static Gradient bodyGradient = LinearGradient(
     begin: AlignmentGeometry.topCenter,
     end: AlignmentGeometry.bottomCenter,
-    colors: [Color(0XFFFFFFFF), Color(0xFFF1F1F1)],
+    colors: [
+      Color.fromARGB(255, 233, 215, 53),
+      Color.fromARGB(255, 45, 223, 9),
+    ],
   );
 }

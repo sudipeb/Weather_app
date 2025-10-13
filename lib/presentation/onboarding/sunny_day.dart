@@ -5,30 +5,49 @@ class SunnyDay extends StatelessWidget {
   const SunnyDay({super.key});
 
   @override
-  Widget build(context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(gradient: ColorConstants.bodyGradient),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            AssetsConstants.onboardingImage,
-            height: double.infinity,
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand, // Fill the whole parent space (PageView page)
+      children: [
+        // Image fills entire page
+        Image.asset(
+          AssetsConstants.onboardingImage,
+          fit: BoxFit.cover, // cover entire area without distortion
+        ),
+
+        // Text overlay aligned at  center
+        Align(
+          alignment: Alignment.center,
+          child: Container(
             width: double.infinity,
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Stay one step ahead of the storm',
-            style: TextStyle(
-              color: Colors.deepPurple,
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
+            padding: const EdgeInsets.all(16),
+            // Optional: gradient background for better readability
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.transparent, Colors.black54],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Text(
+              'Stay one step ahead of the storm',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                // shadows: [
+                //   Shadow(
+                //     offset: Offset(1, 1),
+                //     blurRadius: 4,
+                //     color: Colors.black87,
+                //   ),
+                // ],
+              ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

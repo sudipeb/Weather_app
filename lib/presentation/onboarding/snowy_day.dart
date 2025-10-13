@@ -6,25 +6,34 @@ class SnowyDay extends StatelessWidget {
 
   @override
   Widget build(context) {
+    //return an container
     return Container(
-      height: double.infinity,
+      //Make this widget as tall as possible within the available space.
+      height: double.infinity,  
+
+      //Make this widget as wide as possible within the available space.
       width: double.infinity,
-      decoration: BoxDecoration(gradient: ColorConstants.bodyGradient),
+
+      //used decoration to use the gradient in background of the container
+      // decoration: BoxDecoration(gradient: ColorConstants.bodyGradient),
+
+      // A Column to arrange children vertically in the center of the screen
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment:
+            MainAxisAlignment.center, // Center children vertically
         children: [
-          Image.asset(
-            AssetsConstants.homeSvg,
-            height: double.infinity,
-            width: double.infinity,
-          ),
+          Image.asset(AssetsConstants.homeSvg, fit: BoxFit.fill),
+
+          // Adds vertical spacing between image and text(optional)
           SizedBox(height: 10),
+
+          // Displays a heading text with custom styling
           Text(
             'Stay one step ahead of the storm',
             style: TextStyle(
-              color: Colors.deepPurple,
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
+              color: Colors.deepPurple, // Text color
+              fontWeight: FontWeight.bold, // Bold font weight
+              fontSize: 24, // Font size
             ),
           ),
         ],
