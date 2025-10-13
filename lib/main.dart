@@ -1,7 +1,7 @@
 //Importing the Flutter material design package.
 // provides access to pre-built widgets like buttons, texts, etc.
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/onboarding_screen.dart';
+import 'package:weather_app/presentation/onboarding/onboarding_screen.dart';
 
 //entry point of every Dart/Flutter app.
 void main() {
