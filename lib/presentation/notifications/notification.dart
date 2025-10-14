@@ -58,12 +58,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop;
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop;
+        //   },
+        //   icon: Icon(Icons.arrow_back),
+        // ),
         title: Text('Notifications'),
         // centerTitle: true,
       ),
