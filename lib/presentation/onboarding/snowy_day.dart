@@ -6,12 +6,12 @@ class SnowyDay extends StatelessWidget {
 
   @override
   Widget build(context) {
-    //return an container
+    //returns an container with stack structure
     return Stack(
       fit: StackFit.expand,
       // Center children vertically
       children: [
-        Image.asset(AssetsConstants.homeSvg, fit: BoxFit.fill),
+        Image.asset(AssetsConstants.homeSvg, fit: BoxFit.cover),
 
         // Adds vertical spacing between image and text(optional)
         SizedBox(height: 10),

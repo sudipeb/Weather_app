@@ -1,19 +1,34 @@
-//Importing the Flutter material design package.
-// provides access to pre-built widgets like buttons, texts, etc.
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_screen.dart';
 
 //entry point of every Dart/Flutter app.
 void main() {
-  // runApp() takes the root widget and inflates it to start the app.
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // Constructor with an optional key. 'const' makes it compile-time constant.
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This method builds the UI for this widget.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    await Future.delayed(const Duration(seconds: 3));
+    FlutterNativeSplash.remove();
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
@@ -22,5 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

@@ -15,22 +15,21 @@ class AssetsConstants {
   /// Base directory path for SVG assets.
   static const String _baseSVGpath = 'assets/svg';
 
-  /// Path to the onboarding page image asset.
+  //image path
   static const String onboardingImage = '$_baseImagePath/splashImage.jpg';
 
-  /// path to the custom icons as per use
+  //icons
   static const String onboardingIcon = '$_baseIconPath/splashIcon.jpg';
+  static const String splashIcon = '$_baseIconPath/logo.jpg';
 
-  ///path to the custom SVG images
+  //svgs
   static const String homeSvg = '$_baseSVGpath/splashSvg.png';
 }
 
 /// holds color and gradient constants used throughout the app
 class ColorConstants {
-  ///background color set to white using hex value
   static const Color backGroundColor = Color.fromARGB(255, 123, 74, 229);
 
-  ///created the gradient using the hex value
   static Gradient bodyGradient = LinearGradient(
     begin: AlignmentGeometry.topCenter,
     end: AlignmentGeometry.bottomCenter,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/presentation/home/home_page.dart';
 import 'package:weather_app/presentation/onboarding/rainy_day.dart';
 import 'package:weather_app/presentation/onboarding/snowy_day.dart';
 import 'package:weather_app/presentation/onboarding/sunny_day.dart';
@@ -15,6 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   /// initialized the pagecontroller for movement between onboarding pages
   late final PageController controller;
+  bool isLastPage = false;
 
   ///
   @override
@@ -36,52 +38,78 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(context) {
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height - 80,
-          width: double.infinity,
-          color: Colors.white,
-          //provides the padding of 20pixel from bottom
-          padding: const EdgeInsets.only(bottom: 20),
-          //created pageview to show the onboarding screens
-          child: PageView(
-            controller: controller,
-            children: [SunnyDay(), RainyDay(), SnowyDay()],
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.white,
+            body: PageView(
+              controller: controller,
+              onPageChanged: (index) {
+                setState(() => isLastPage = index == 2);
+              },
+              children: [SunnyDay(), RainyDay(), SnowyDay()],
+            ),
           ),
-        ),
-        bottomSheet: Container(
-          color: Colors.white,
-          // decoration: BoxDecoration(gradient: ColorConstants.bodyGradient),
-          height: 80,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween, //
-            children: [
-              TextButton(
-                onPressed: () => controller.jumpToPage(2),
-                child: Text('Skip'),
-              ),
-              Center(
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: 3,
-                  effect: const WormEffect(
-                    spacing: 16,
-                    dotColor: ColorConstants.backGroundColor,
-                    activeDotColor: Colors.tealAccent,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: isLastPage
+                ? TextButton(
+                    autofocus: true,
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => HomePageScreen(),
+                        ),
+                      );
+                    },
+                  )
+                : Container(
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () => controller.jumpToPage(2),
+                          child: const Text('Skip'),
+                        ),
+                        Center(
+                          child: SmoothPageIndicator(
+                            controller: controller,
+                            count: 3,
+                            effect: const WormEffect(
+                              spacing: 16,
+                              dotColor: ColorConstants.backGroundColor,
+                              activeDotColor: Colors.tealAccent,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          ),
+                          child: const Text('Next'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => controller.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                ),
-                child: Text('Next'),
-              ),
-            ],
           ),
-        ),
+        ],
       ),
     );
   }
