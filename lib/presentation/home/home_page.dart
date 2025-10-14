@@ -10,6 +10,19 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.menu),
+        centerTitle: true,
+        title: Text('Weather App'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.notifications),
+          ),
+        ],
+      ),
+      body: Container(),
+    );
   }
 }
