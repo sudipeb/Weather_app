@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/presentation/notifications/notification.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -9,6 +11,26 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
+  void fetchWeatherData() async {
+    final dio = Dio();
+    try {
+      final response = await dio.get(ApiConstants.weather(27.6588, 85.3247));
+      if (response.statusCode == 200) {
+        print('${response.data}');
+      } else {
+        print('${response.statusCode}');
+      }
+    } catch (ex) {
+      print("exception:$ex");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchWeatherData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
