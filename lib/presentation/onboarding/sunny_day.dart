@@ -15,27 +15,52 @@ class SunnyDay extends StatelessWidget {
           fit: BoxFit.cover, // cover entire area without distortion
         ),
 
-        // Text overlay aligned at  center
-        Align(
-          alignment: Alignment.center,
+        Positioned(
+          top: 600,
+          left: 5,
+          right: 5,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(16),
 
-            child: Text(
-              'Stay one step ahead of the storm',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                shadows: [
-                  Shadow(
-                    offset: Offset(1, 1),
-                    blurRadius: 4,
-                    color: Colors.black87,
-                  ),
-                ],
+            child: ListTile(
+              title: Text(
+                'Welcome to SunTrack!',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 34,
+                  foreground: Paint()
+                    ..shader = LinearGradient(
+                      colors: [Colors.blue, Colors.yellow, Colors.red],
+                    ).createShader(Rect.fromLTWH(0, 0, 300, 0)), // remove color
+                  letterSpacing: 7,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1, 1),
+                      blurRadius: 4,
+                      color: Colors.black87,
+                    ),
+                  ],
+                ),
+              ),
+
+              subtitle: Text(
+                'Stay updated with the latest weather forecasts, and plan your day with ease.',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  foreground: Paint()
+                    ..shader = LinearGradient(
+                      colors: [Colors.purple, Colors.orange, Colors.black],
+                    ).createShader(Rect.fromLTWH(0, 0, 300, 0)),
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1, 1),
+                      blurRadius: 4,
+                      color: Colors.black87,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

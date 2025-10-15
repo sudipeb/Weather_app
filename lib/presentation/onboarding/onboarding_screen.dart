@@ -65,8 +65,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Text(
                       'Get Started',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: Color(0XFFC75D2C),
                       ),
                     ),
                     onPressed: () {
@@ -85,7 +86,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       children: [
                         TextButton(
                           onPressed: () => controller.jumpToPage(2),
-                          child: const Text('Skip'),
+                          child: const Text(
+                            'Skip',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0XFF000000),
+                            ),
+                          ),
                         ),
                         Center(
                           child: SmoothPageIndicator(
@@ -94,7 +102,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             effect: const WormEffect(
                               spacing: 16,
                               dotColor: ColorConstants.backGroundColor,
-                              activeDotColor: Colors.tealAccent,
+                              activeDotColor: Color(0xFF662222),
                             ),
                           ),
                         ),
@@ -103,7 +111,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut,
                           ),
-                          child: const Text('Next'),
+                          child: const Text(
+                            'Next',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0XFF000000),
+                            ),
+                          ),
                         ),
                       ],
                     ),

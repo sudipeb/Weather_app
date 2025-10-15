@@ -17,7 +17,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   WeatherResponseModel? _weather;
   bool _loading = true;
 
-  Future<void> fetchWeatherData() async {
+  Future<void> fetchWeatherData() async {     
     final dio = Dio();
     try {
       final response = await dio.get(
