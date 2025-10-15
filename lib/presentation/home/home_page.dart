@@ -65,7 +65,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             centerTitle: true,
-            title: const Text('Weather App'),
+            title: const Text(
+              'Weather App',
+              style: TextStyle(color: Colors.white),
+            ),
             actions: [
               IconButton(
                 onPressed: () {
@@ -75,7 +78,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     ),
                   );
                 },
-                icon: const Icon(Icons.notifications),
+                icon: const Icon(
+                  Icons.notifications,
+                  color: ColorConstants.backGroundColor,
+                ),
               ),
             ],
           ),

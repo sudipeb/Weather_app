@@ -28,7 +28,7 @@ class AssetsConstants {
 
 /// holds color and gradient constants used throughout the app
 class ColorConstants {
-  static const Color backGroundColor = Color.fromARGB(255, 123, 74, 229);
+  static const Color backGroundColor = Color.fromARGB(255, 255, 255, 255);
 
   static Gradient bodyGradient = LinearGradient(
     begin: AlignmentGeometry.topCenter,
