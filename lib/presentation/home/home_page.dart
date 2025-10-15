@@ -13,22 +13,35 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  Future<WeatherResponseModel?> fetchWeatherData() async {
+  WeatherResponseModel? _weather;
+  bool _loading = true;
+
+  Future<void> fetchWeatherData() async {
     final dio = Dio();
     try {
-      final response = await dio.get(ApiConstants.weather(27.6588, 85.3247));
+      final response = await dio.get(
+        ApiConstants.weather(27.7103, 85.3222),
+      ); // London
+
+      print('${response.data}');
+      print('${response.statusCode}');
 
       if (response.statusCode == 200) {
         final weather = WeatherResponseModel.fromJson(response.data);
-        print('${response.data}');
-        return weather;
+        setState(() {
+          _weather = weather;
+          _loading = false;
+        });
       } else {
-        print('${response.statusCode}');
-        return null;
+        setState(() {
+          _loading = false;
+        });
       }
     } catch (ex) {
-      print("exception:$ex");
-      return null;
+      print("exception: $ex");
+      setState(() {
+        _loading = false;
+      });
     }
   }
 
@@ -43,24 +56,56 @@ class _HomePageScreenState extends State<HomePageScreen> {
     return Scaffold(
       drawer: Drawer(child: DrawerList()),
       appBar: AppBar(
-        // leading: Icon(Icons.menu),
         centerTitle: true,
-        title: Text('Weather App'),
+        title: const Text('Weather App'),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NotificationScreen()),
-                );
-              },
-              icon: Icon(Icons.notifications),
-            ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const NotificationScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.notifications),
           ),
         ],
       ),
-      body: Container(),
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : _weather == null
+          ? const Center(child: Text('Failed to load weather data'))
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _weather!.location.name,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Temperature: ${_weather!.current.temp_c.toStringAsFixed(1)}°C',
+                    style: const TextStyle(fontSize: 22),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Condition: ${_weather!.current.condition.text}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(height: 16),
+                  Image.network(
+                    'https:${_weather!.current.condition.icon}',
+                    height: 80,
+                    width: 80,
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }

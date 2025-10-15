@@ -4,8 +4,8 @@ class WeatherLocationEntity {
   final String country;
   final double lat;
   final double lon;
-  final String tzId;
-  final int localtimeEpoch;
+  final String tz_id;
+  final int localtime_epoch;
   final String localtime;
 
   WeatherLocationEntity({
@@ -14,8 +14,8 @@ class WeatherLocationEntity {
     required this.country,
     required this.lat,
     required this.lon,
-    required this.tzId,
-    required this.localtimeEpoch,
+    required this.tz_id,
+    required this.localtime_epoch,
     required this.localtime,
   });
 }

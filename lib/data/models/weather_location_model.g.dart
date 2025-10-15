@@ -14,8 +14,8 @@ _WeatherLocationModel _$WeatherLocationModelFromJson(
   country: json['country'] as String,
   lat: (json['lat'] as num).toDouble(),
   lon: (json['lon'] as num).toDouble(),
-  tzId: json['tzId'] as String,
-  localtimeEpoch: (json['localtimeEpoch'] as num).toInt(),
+  tz_id: json['tz_id'] as String,
+  localtime_epoch: (json['localtime_epoch'] as num).toInt(),
   localtime: json['localtime'] as String,
 );
 
@@ -27,7 +27,7 @@ Map<String, dynamic> _$WeatherLocationModelToJson(
   'country': instance.country,
   'lat': instance.lat,
   'lon': instance.lon,
-  'tzId': instance.tzId,
-  'localtimeEpoch': instance.localtimeEpoch,
+  'tz_id': instance.tz_id,
+  'localtime_epoch': instance.localtime_epoch,
   'localtime': instance.localtime,
 };

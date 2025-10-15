@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WeatherLocationModel {
 
- String get name; String get region; String get country; double get lat; double get lon; String get tzId; int get localtimeEpoch; String get localtime;
+ String get name; String get region; String get country; double get lat; double get lon; String get tz_id; int get localtime_epoch; String get localtime;
 /// Create a copy of WeatherLocationModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $WeatherLocationModelCopyWith<WeatherLocationModel> get copyWith => _$WeatherLoc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeatherLocationModel&&(identical(other.name, name) || other.name == name)&&(identical(other.region, region) || other.region == region)&&(identical(other.country, country) || other.country == country)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.lon, lon) || other.lon == lon)&&(identical(other.tzId, tzId) || other.tzId == tzId)&&(identical(other.localtimeEpoch, localtimeEpoch) || other.localtimeEpoch == localtimeEpoch)&&(identical(other.localtime, localtime) || other.localtime == localtime));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeatherLocationModel&&(identical(other.name, name) || other.name == name)&&(identical(other.region, region) || other.region == region)&&(identical(other.country, country) || other.country == country)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.lon, lon) || other.lon == lon)&&(identical(other.tz_id, tz_id) || other.tz_id == tz_id)&&(identical(other.localtime_epoch, localtime_epoch) || other.localtime_epoch == localtime_epoch)&&(identical(other.localtime, localtime) || other.localtime == localtime));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,region,country,lat,lon,tzId,localtimeEpoch,localtime);
+int get hashCode => Object.hash(runtimeType,name,region,country,lat,lon,tz_id,localtime_epoch,localtime);
 
 @override
 String toString() {
-  return 'WeatherLocationModel(name: $name, region: $region, country: $country, lat: $lat, lon: $lon, tzId: $tzId, localtimeEpoch: $localtimeEpoch, localtime: $localtime)';
+  return 'WeatherLocationModel(name: $name, region: $region, country: $country, lat: $lat, lon: $lon, tz_id: $tz_id, localtime_epoch: $localtime_epoch, localtime: $localtime)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $WeatherLocationModelCopyWith<$Res>  {
   factory $WeatherLocationModelCopyWith(WeatherLocationModel value, $Res Function(WeatherLocationModel) _then) = _$WeatherLocationModelCopyWithImpl;
 @useResult
 $Res call({
- String name, String region, String country, double lat, double lon, String tzId, int localtimeEpoch, String localtime
+ String name, String region, String country, double lat, double lon, String tz_id, int localtime_epoch, String localtime
 });
 
 
@@ -65,15 +65,15 @@ class _$WeatherLocationModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherLocationModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? region = null,Object? country = null,Object? lat = null,Object? lon = null,Object? tzId = null,Object? localtimeEpoch = null,Object? localtime = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? region = null,Object? country = null,Object? lat = null,Object? lon = null,Object? tz_id = null,Object? localtime_epoch = null,Object? localtime = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
 as String,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,lat: null == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
 as double,lon: null == lon ? _self.lon : lon // ignore: cast_nullable_to_non_nullable
-as double,tzId: null == tzId ? _self.tzId : tzId // ignore: cast_nullable_to_non_nullable
-as String,localtimeEpoch: null == localtimeEpoch ? _self.localtimeEpoch : localtimeEpoch // ignore: cast_nullable_to_non_nullable
+as double,tz_id: null == tz_id ? _self.tz_id : tz_id // ignore: cast_nullable_to_non_nullable
+as String,localtime_epoch: null == localtime_epoch ? _self.localtime_epoch : localtime_epoch // ignore: cast_nullable_to_non_nullable
 as int,localtime: null == localtime ? _self.localtime : localtime // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -160,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String region,  String country,  double lat,  double lon,  String tzId,  int localtimeEpoch,  String localtime)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String region,  String country,  double lat,  double lon,  String tz_id,  int localtime_epoch,  String localtime)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherLocationModel() when $default != null:
-return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tzId,_that.localtimeEpoch,_that.localtime);case _:
+return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tz_id,_that.localtime_epoch,_that.localtime);case _:
   return orElse();
 
 }
@@ -181,10 +181,10 @@ return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String region,  String country,  double lat,  double lon,  String tzId,  int localtimeEpoch,  String localtime)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String region,  String country,  double lat,  double lon,  String tz_id,  int localtime_epoch,  String localtime)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherLocationModel():
-return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tzId,_that.localtimeEpoch,_that.localtime);case _:
+return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tz_id,_that.localtime_epoch,_that.localtime);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +201,10 @@ return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String region,  String country,  double lat,  double lon,  String tzId,  int localtimeEpoch,  String localtime)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String region,  String country,  double lat,  double lon,  String tz_id,  int localtime_epoch,  String localtime)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherLocationModel() when $default != null:
-return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tzId,_that.localtimeEpoch,_that.localtime);case _:
+return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.tz_id,_that.localtime_epoch,_that.localtime);case _:
   return null;
 
 }
@@ -216,7 +216,7 @@ return $default(_that.name,_that.region,_that.country,_that.lat,_that.lon,_that.
 @JsonSerializable()
 
 class _WeatherLocationModel implements WeatherLocationModel {
-  const _WeatherLocationModel({required this.name, required this.region, required this.country, required this.lat, required this.lon, required this.tzId, required this.localtimeEpoch, required this.localtime});
+  const _WeatherLocationModel({required this.name, required this.region, required this.country, required this.lat, required this.lon, required this.tz_id, required this.localtime_epoch, required this.localtime});
   factory _WeatherLocationModel.fromJson(Map<String, dynamic> json) => _$WeatherLocationModelFromJson(json);
 
 @override final  String name;
@@ -224,8 +224,8 @@ class _WeatherLocationModel implements WeatherLocationModel {
 @override final  String country;
 @override final  double lat;
 @override final  double lon;
-@override final  String tzId;
-@override final  int localtimeEpoch;
+@override final  String tz_id;
+@override final  int localtime_epoch;
 @override final  String localtime;
 
 /// Create a copy of WeatherLocationModel
@@ -241,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeatherLocationModel&&(identical(other.name, name) || other.name == name)&&(identical(other.region, region) || other.region == region)&&(identical(other.country, country) || other.country == country)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.lon, lon) || other.lon == lon)&&(identical(other.tzId, tzId) || other.tzId == tzId)&&(identical(other.localtimeEpoch, localtimeEpoch) || other.localtimeEpoch == localtimeEpoch)&&(identical(other.localtime, localtime) || other.localtime == localtime));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeatherLocationModel&&(identical(other.name, name) || other.name == name)&&(identical(other.region, region) || other.region == region)&&(identical(other.country, country) || other.country == country)&&(identical(other.lat, lat) || other.lat == lat)&&(identical(other.lon, lon) || other.lon == lon)&&(identical(other.tz_id, tz_id) || other.tz_id == tz_id)&&(identical(other.localtime_epoch, localtime_epoch) || other.localtime_epoch == localtime_epoch)&&(identical(other.localtime, localtime) || other.localtime == localtime));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,region,country,lat,lon,tzId,localtimeEpoch,localtime);
+int get hashCode => Object.hash(runtimeType,name,region,country,lat,lon,tz_id,localtime_epoch,localtime);
 
 @override
 String toString() {
-  return 'WeatherLocationModel(name: $name, region: $region, country: $country, lat: $lat, lon: $lon, tzId: $tzId, localtimeEpoch: $localtimeEpoch, localtime: $localtime)';
+  return 'WeatherLocationModel(name: $name, region: $region, country: $country, lat: $lat, lon: $lon, tz_id: $tz_id, localtime_epoch: $localtime_epoch, localtime: $localtime)';
 }
 
 
@@ -261,7 +261,7 @@ abstract mixin class _$WeatherLocationModelCopyWith<$Res> implements $WeatherLoc
   factory _$WeatherLocationModelCopyWith(_WeatherLocationModel value, $Res Function(_WeatherLocationModel) _then) = __$WeatherLocationModelCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String region, String country, double lat, double lon, String tzId, int localtimeEpoch, String localtime
+ String name, String region, String country, double lat, double lon, String tz_id, int localtime_epoch, String localtime
 });
 
 
@@ -278,15 +278,15 @@ class __$WeatherLocationModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherLocationModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? region = null,Object? country = null,Object? lat = null,Object? lon = null,Object? tzId = null,Object? localtimeEpoch = null,Object? localtime = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? region = null,Object? country = null,Object? lat = null,Object? lon = null,Object? tz_id = null,Object? localtime_epoch = null,Object? localtime = null,}) {
   return _then(_WeatherLocationModel(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
 as String,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,lat: null == lat ? _self.lat : lat // ignore: cast_nullable_to_non_nullable
 as double,lon: null == lon ? _self.lon : lon // ignore: cast_nullable_to_non_nullable
-as double,tzId: null == tzId ? _self.tzId : tzId // ignore: cast_nullable_to_non_nullable
-as String,localtimeEpoch: null == localtimeEpoch ? _self.localtimeEpoch : localtimeEpoch // ignore: cast_nullable_to_non_nullable
+as double,tz_id: null == tz_id ? _self.tz_id : tz_id // ignore: cast_nullable_to_non_nullable
+as String,localtime_epoch: null == localtime_epoch ? _self.localtime_epoch : localtime_epoch // ignore: cast_nullable_to_non_nullable
 as int,localtime: null == localtime ? _self.localtime : localtime // ignore: cast_nullable_to_non_nullable
 as String,
   ));

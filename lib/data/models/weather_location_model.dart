@@ -13,8 +13,8 @@ abstract class WeatherLocationModel
     required String country,
     required double lat,
     required double lon,
-    required String tzId,
-    required int localtimeEpoch,
+    required String tz_id,
+    required int localtime_epoch,
     required String localtime,
   }) = _WeatherLocationModel;
   factory WeatherLocationModel.fromJson(Map<String, Object?> json) =>
