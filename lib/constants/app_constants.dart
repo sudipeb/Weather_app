@@ -33,9 +33,6 @@ class ColorConstants {
   static Gradient bodyGradient = LinearGradient(
     begin: AlignmentGeometry.topCenter,
     end: AlignmentGeometry.bottomCenter,
-    colors: [
-      Color.fromARGB(255, 233, 215, 53),
-      Color.fromARGB(255, 45, 223, 9),
-    ],
+    colors: [Color(0xFF3E2D8F), Color(0XFF9D52AC)],
   );
 }
