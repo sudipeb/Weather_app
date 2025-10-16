@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
-import 'package:weather_app/presentation/location/get_user_location.dart';
+
 import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 
 class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({super.key});
+  const HomePageScreen({
+    super.key,
+    required this.latitude,
+    required this.longitude,
+  });
+  final double latitude;
+  final double longitude;
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -22,7 +28,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     final dio = Dio();
     try {
       final response = await dio.get(
-        ApiConstants.weather(27.7103, 85.3222),
+        ApiConstants.weather(widget.latitude, widget.longitude),
       ); // London
 
       print('${response.data}');
@@ -122,7 +128,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         height: 80,
                         width: 80,
                       ),
-                      const GetUserLocation(),
                     ],
                   ),
                 ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/presentation/home/home_page.dart';
+
 import 'package:weather_app/presentation/onboarding/rainy_day.dart';
 import 'package:weather_app/presentation/onboarding/snowy_day.dart';
 import 'package:weather_app/presentation/onboarding/sunny_day.dart';
@@ -14,6 +17,46 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  Position? position;
+  final LocationSettings locationSettings = LocationSettings(
+    accuracy: LocationAccuracy.high,
+    distanceFilter: 100,
+  );
+  Future<void> fetchLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    String latitude;
+    String longitude;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      Fluttertoast.showToast(msg: 'Location Service is not  Enabled');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Fluttertoast.showToast(msg: 'Permission Denined');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      Fluttertoast.showToast(msg: 'Permission Denined Forever');
+    }
+    Position currentPosition = await Geolocator.getCurrentPosition(
+      locationSettings: locationSettings,
+    );
+    // Fetch weather
+
+    setState(() {
+      position = currentPosition;
+      latitude = currentPosition.latitude.toString();
+      print(latitude);
+      longitude = currentPosition.longitude.toString();
+      print(longitude);
+    });
+  }
+
   /// initialized the pagecontroller for movement between onboarding pages
   late final PageController controller;
   bool isLastPage = false;
@@ -23,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     // Call the superclass's initState method to ensure proper initialization
     super.initState();
-
+    fetchLocation();
     // Initialize the PageController to control the PageView
     controller = PageController();
   }
@@ -73,7 +116,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (context) => HomePageScreen(),
+                          builder: (context) => position == null
+                              ? SizedBox(
+                                  height: 24,
+                                  width: 24,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Color(0xFFC75D2C),
+                                  ),
+                                )
+                              : HomePageScreen(
+                                  latitude: position!.latitude,
+                                  longitude: position!.longitude,
+                                ),
                         ),
                       );
                     },
