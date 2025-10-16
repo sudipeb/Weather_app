@@ -48,13 +48,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
     // Fetch weather
 
-    setState(() {
-      position = currentPosition;
-      latitude = currentPosition.latitude.toString();
-      print(latitude);
-      longitude = currentPosition.longitude.toString();
-      print(longitude);
-    });
+    if (mounted) {
+      setState(() {
+        position = currentPosition;
+        latitude = currentPosition.latitude.toString();
+        print(latitude);
+        longitude = currentPosition.longitude.toString();
+        print(longitude);
+      });
+    }
   }
 
   /// initialized the pagecontroller for movement between onboarding pages
@@ -117,12 +119,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => position == null
-                              ? SizedBox(
-                                  height: 24,
-                                  width: 24,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    color: Color(0xFFC75D2C),
+                              ? Center(
+                                  child: SizedBox(
+                                    height: 24,
+                                    width: 24,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: Color(0xFFC75D2C),
+                                    ),
                                   ),
                                 )
                               : HomePageScreen(

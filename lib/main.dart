@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:weather_app/data/models/weather_condition_model.dart';
 
 import 'package:weather_app/presentation/onboarding/onboarding_screen.dart';
 
 //entry point of every Dart/Flutter app.
-void main() {
+void main() async{
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+   await dotenv.load(fileName: ".env");
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
