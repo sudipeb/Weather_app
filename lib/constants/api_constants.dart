@@ -6,4 +6,8 @@ class ApiConstants {
   static String weather(double lat, double lng) {
     return '$_baseUrl/current.json?key=$weatherApiKey&q=$lat,$lng';
   }
+
+  static String forecastWeather(double lat, double lng) {
+    return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=7';
+  }
 }
