@@ -14,16 +14,29 @@ class WeatherCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Today'),
+              Text(
+                'Today',
+                style: TextStyle(
+                  color: ColorConstants.backGroundColor,
+                  fontSize: 20,
+                ),
+              ),
               const SizedBox(width: 10),
-              Text('21july'),
+              Text(
+                '21july',
+                style: TextStyle(
+                  color: ColorConstants.backGroundColor,
+                  fontSize: 20,
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 10),
-          Divider(thickness: 2, color: Colors.grey, indent: 10, endIndent: 10),
+          Divider(thickness: 2, color: Colors.grey, indent: 20, endIndent: 20),
           Column(children: [Text('21july')]),
         ],
       ),

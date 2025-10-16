@@ -17,6 +17,8 @@ class AssetsConstants {
 
   //image path
   static const String onboardingImage = '$_baseImagePath/splashImage.jpg';
+  static const String homePageImage = '$_baseImagePath/House.jpg';
+  static const String housePageImage = '$_baseImagePath/houseremoved.png';
 
   //icons
   static const String onboardingIcon = '$_baseIconPath/splashIcon.jpg';

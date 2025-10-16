@@ -6,6 +6,7 @@ import 'package:weather_app/data/models/weather_response_model.dart';
 
 import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
+import 'package:weather_app/widgets/weather_card.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({
@@ -162,8 +163,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             const SizedBox(width: 10),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        
+                        const SizedBox(height: 60),
+                        Container(
+                          child: Image.asset(AssetsConstants.housePageImage),
+                        ),
+                        const WeatherCard(),
                       ],
                     ),
                   ),
