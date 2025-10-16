@@ -69,66 +69,103 @@ class _HomePageScreenState extends State<HomePageScreen> {
         Scaffold(
           backgroundColor: Colors.transparent,
           drawer: Drawer(child: DrawerList()),
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            title: const Text(
-              'Weather App',
-              style: TextStyle(color: Colors.white),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const NotificationScreen(),
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.notifications,
-                  color: ColorConstants.backGroundColor,
-                ),
-              ),
-            ],
-          ),
+          // appBar: AppBar(
+          //   backgroundColor: Colors.transparent,
+          //   centerTitle: true,
+          //   title: const Text(
+          //     'Weather App',
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   actions: [
+          //     IconButton(
+          //       onPressed: () {
+          //         Navigator.of(context).push(
+          //           MaterialPageRoute(
+          //             builder: (context) => const NotificationScreen(),
+          //           ),
+          //         );
+          //       },
+          //       icon: const Icon(
+          //         Icons.notifications,
+          //         color: ColorConstants.backGroundColor,
+          //       ),
+          //     ),
+          //   ],
+          // ),
           body: _loading
               ? const Center(child: CircularProgressIndicator())
               : _weather == null
               ? const Center(child: Text('Failed to load weather data'))
-              : Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _weather!.location.name,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+              : SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          'https:${_weather!.current.condition.icon}',
+                          scale: 0.5,
+                          alignment: AlignmentGeometry.topCenter,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Temperature: ${_weather!.current.temp_c.toStringAsFixed(1)}°C',
-                        style: const TextStyle(fontSize: 22),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Local Time: ${_weather!.location.localtime}',
-                        style: const TextStyle(fontSize: 22),
-                      ),
-                      Text(
-                        'Condition: ${_weather!.current.condition.text}',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      const SizedBox(height: 16),
-                      Image.network(
-                        'https:${_weather!.current.condition.icon}',
-                        height: 80,
-                        width: 80,
-                      ),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              '${_weather!.current.temp_c.toStringAsFixed(1)}°C',
+                              style: const TextStyle(fontSize: 48),
+                              textAlign: TextAlign.center,
+                            ),
+
+                            Text(
+                              _weather!.location.name,
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 8),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.cloud, size: 20),
+                            const SizedBox(width: 5),
+                            Text(
+                              'Its ${_weather!.current.condition.text}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: ColorConstants.backGroundColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'UV: ${_weather!.current.uv}',
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              'WIND: ${_weather!.current.wind_mph}',
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              '${_weather!.current.wind_dir}',
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(width: 10),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        
+                      ],
+                    ),
                   ),
                 ),
         ),
