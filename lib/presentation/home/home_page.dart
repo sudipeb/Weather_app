@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
+import 'package:weather_app/presentation/location/get_user_location.dart';
 import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 
@@ -17,7 +18,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   WeatherResponseModel? _weather;
   bool _loading = true;
 
-  Future<void> fetchWeatherData() async {     
+  Future<void> fetchWeatherData() async {
     final dio = Dio();
     try {
       final response = await dio.get(
@@ -121,6 +122,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         height: 80,
                         width: 80,
                       ),
+                      const GetUserLocation(),
                     ],
                   ),
                 ),
