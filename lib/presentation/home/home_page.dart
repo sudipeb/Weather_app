@@ -70,29 +70,29 @@ class _HomePageScreenState extends State<HomePageScreen> {
         Scaffold(
           backgroundColor: Colors.transparent,
           drawer: Drawer(child: DrawerList()),
-          // appBar: AppBar(
-          //   backgroundColor: Colors.transparent,
-          //   centerTitle: true,
-          //   title: const Text(
-          //     'Weather App',
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          //   actions: [
-          //     IconButton(
-          //       onPressed: () {
-          //         Navigator.of(context).push(
-          //           MaterialPageRoute(
-          //             builder: (context) => const NotificationScreen(),
-          //           ),
-          //         );
-          //       },
-          //       icon: const Icon(
-          //         Icons.notifications,
-          //         color: ColorConstants.backGroundColor,
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+            title: const Text(
+              'Weather App',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.notifications,
+                  color: ColorConstants.backGroundColor,
+                ),
+              ),
+            ],
+          ),
           body: _loading
               ? const Center(child: CircularProgressIndicator())
               : _weather == null
@@ -157,16 +157,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               style: const TextStyle(fontSize: 20),
                             ),
                             Text(
-                              '${_weather!.current.wind_dir}',
+                              _weather!.current.wind_dir,
                               style: const TextStyle(fontSize: 20),
                             ),
                             const SizedBox(width: 10),
                           ],
                         ),
-                        const SizedBox(height: 60),
-                        Container(
-                          child: Image.asset(AssetsConstants.housePageImage),
-                        ),
+                        const SizedBox(height: 30),
+                        Image.asset(AssetsConstants.housePageImage),
                         const WeatherCard(),
                       ],
                     ),

@@ -11,6 +11,7 @@ class AssetsConstants {
 
   /// Base directory path for icon assets.
   static const String _baseIconPath = 'assets/icons';
+  
 
   /// Base directory path for SVG assets.
   static const String _baseSVGpath = 'assets/svg';
