@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/presentation/settings.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -21,7 +22,14 @@ class DrawerList extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(horizontal: 12),
           leading: const Icon(Icons.settings),
           title: const Text('Settings'),
-          onTap: () {},
+          onTap: () {
+           Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => Settings(), // your page
+  ),
+);
+          },
         ),
         ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 8),
