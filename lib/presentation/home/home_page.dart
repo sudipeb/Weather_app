@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
-import 'package:weather_app/data/models/forecast_model.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
+import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 import 'package:weather_app/widgets/weather_card.dart';
 
@@ -92,16 +92,30 @@ class _HomePageScreenState extends State<HomePageScreen> {
             actions: [
               IconButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('No weather alerts for this location'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
+                  _alertList != null && _alertList!.alert.isNotEmpty
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                NotificationScreen(alertList: _alertList!),
+                          ),
+                        )
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'No weather alerts for this location',
+                            ),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                 },
-                icon: const Icon(
-                  Icons.notifications_none_outlined,
-                  color: ColorConstants.backGroundColor,
+                icon: Icon(
+                  _alertList != null && _alertList!.alert.isNotEmpty
+                      ? Icons.notifications_active_outlined
+                      : Icons.notifications_none_outlined,
+                  color: _alertList != null && _alertList!.alert.isNotEmpty
+                      ? Colors.redAccent
+                      : ColorConstants.backGroundColor,
                 ),
               ),
             ],
