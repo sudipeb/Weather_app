@@ -18,14 +18,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.of(context).pop;
-        //   },
-        //   icon: Icon(Icons.arrow_back),
-        // ),
         title: Text('Notifications'),
-        // centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: alerts.length,
@@ -34,7 +27,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           return Card(
             margin: const EdgeInsets.all(10),
             child: ListTile(
-              leading: Icon(Icons.warning),
+              leading: Icon(Icons.notifications_on),
               title: Text(alert.headline),
               subtitle: Text(alert.category),
             ),
