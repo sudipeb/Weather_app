@@ -1,93 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/data/models/forecast_model.dart';
 
 class WeatherCard extends StatelessWidget {
-  const WeatherCard({super.key});
+  const WeatherCard({super.key, required this.forecast});
+  final ForecastModel forecast;
 
   @override
   Widget build(BuildContext context) {
-    List<String> items = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-    ];
-    return Container(
-      height: 300,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: ColorConstants.bodyGradient,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Today',
-                  style: TextStyle(
-                    color: ColorConstants.backGroundColor,
-                    fontSize: 20,
+    return SizedBox(
+      height: 250,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: forecast.forecastday.length,
+        itemBuilder: (context, index) {
+          final day = forecast.forecastday[index];
+          return Card(
+            color: Colors.white.withOpacity(0.2),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "${day.date.split('-')[2]}/${day.date.split('-')[1]}", // "17-10"
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '21july',
-                  style: TextStyle(
-                    color: ColorConstants.backGroundColor,
-                    fontSize: 20,
+                  Image.network(
+                    'https:${day.day.condition.icon}',
+                    height: 50,
+                    width: 50,
                   ),
-                ),
-              ),
-            ],
-          ),
-          Divider(thickness: 2, color: Colors.grey, indent: 20, endIndent: 20),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              itemCount: items.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 40,
-                  width: 70,
-                  margin: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12),
+                  Text(
+                    '${day.day.avgtemp_c.round()}°C',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     children: [
                       Text(
-                        items[index],
-                        style: TextStyle(
-                          color: ColorConstants.backGroundColor,
-                          fontSize: 16,
-                        ),
+                        'Sunrise',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
                       ),
-                      Icon(Icons.cloud, color: Colors.white),
-                      SizedBox(height: 8),
                       Text(
-                        '25°C',
-                        style: TextStyle(color: ColorConstants.backGroundColor),
+                        day.astro.sunrise,
+                        style: TextStyle(fontSize: 12, color: Colors.white),
                       ),
                     ],
                   ),
-                );
-              },
+                  const SizedBox(height: 5),
+                  Text(
+                    'UV ${day.day.uv}',
+                    style: TextStyle(fontSize: 12, color: Colors.white),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

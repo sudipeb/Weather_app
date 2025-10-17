@@ -2,11 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/data/models/forecast_model.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
-import 'package:weather_app/data/models/weather_alert_model.dart';
-
-import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 import 'package:weather_app/widgets/weather_card.dart';
 
@@ -26,6 +24,7 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   WeatherResponseModel? _weather;
   WeatherAlertListModel? _alertList;
+
   bool _loading = true;
 
   Future<void> fetchWeatherData() async {
@@ -33,7 +32,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     try {
       final response = await dio.get(
         ApiConstants.weather(widget.latitude, widget.longitude),
-      ); // London
+      );
 
       print('Response status: ${response.statusCode}');
       if (response.statusCode == 200) {
@@ -45,6 +44,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           setState(() {
             _weather = weather;
             _alertList = alertListModel;
+
             _loading = false;
           });
         } catch (e) {
@@ -178,7 +178,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         ),
                         const SizedBox(height: 30),
                         Image.asset(AssetsConstants.housePageImage),
-                        const WeatherCard(),
+                        WeatherCard(forecast: _weather!.forecast),
                       ],
                     ),
                   ),
