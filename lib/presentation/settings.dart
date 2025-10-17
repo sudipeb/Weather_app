@@ -12,6 +12,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: SearchBarWidget(
           onPlaceSelected: (lat, lon) {
