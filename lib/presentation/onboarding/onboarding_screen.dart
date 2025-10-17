@@ -4,10 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/presentation/home/home_page.dart';
-
-import 'package:weather_app/presentation/onboarding/rainy_day.dart';
-import 'package:weather_app/presentation/onboarding/snowy_day.dart';
-import 'package:weather_app/presentation/onboarding/sunny_day.dart';
+import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
