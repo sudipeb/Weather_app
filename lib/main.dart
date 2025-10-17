@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:weather_app/data/models/weather_condition_model.dart';
+
 
 import 'package:weather_app/presentation/onboarding/onboarding_screen.dart';
 
