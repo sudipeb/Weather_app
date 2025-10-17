@@ -18,10 +18,10 @@ class RainyDay extends StatelessWidget {
 
         // Displays a heading text with custom styling
         Positioned(
-          top: 600,
+          top: 450,
           left: 5,
           right: 5,
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
 
             child: ListTile(
@@ -29,7 +29,7 @@ class RainyDay extends StatelessWidget {
                 'Ahead of the Weather',
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 34,
                   foreground: Paint()
                     ..shader = LinearGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],

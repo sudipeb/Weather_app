@@ -11,7 +11,6 @@ class AssetsConstants {
 
   /// Base directory path for icon assets.
   static const String _baseIconPath = 'assets/icons';
-  
 
   /// Base directory path for SVG assets.
   static const String _baseSVGpath = 'assets/svg';
@@ -20,13 +19,14 @@ class AssetsConstants {
   static const String onboardingImage = '$_baseImagePath/splashImage.jpg';
   static const String homePageImage = '$_baseImagePath/House.jpg';
   static const String housePageImage = '$_baseImagePath/houseremoved.png';
+  static const String homeSvg = '$_baseSVGpath/photo.png';
 
   //icons
   static const String onboardingIcon = '$_baseIconPath/splashIcon.jpg';
   static const String splashIcon = '$_baseIconPath/logo.jpg';
 
   //svgs
-  static const String homeSvg = '$_baseSVGpath/splashSvg.png';
+  // static const String homeSvg = '$_baseSVGpath/splashSvg.png';
 }
 
 /// holds color and gradient constants used throughout the app

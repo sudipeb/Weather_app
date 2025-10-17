@@ -16,10 +16,10 @@ class SunnyDay extends StatelessWidget {
         ),
 
         Positioned(
-          top: 600,
+          top: 450,
           left: 5,
           right: 5,
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
 
             child: ListTile(
@@ -50,7 +50,11 @@ class SunnyDay extends StatelessWidget {
                 style: TextStyle(
                   foreground: Paint()
                     ..shader = LinearGradient(
-                      colors: [Colors.purple, Colors.orange, Colors.black],
+                      colors: [
+                        Colors.purple,
+                        Colors.orange,
+                        Colors.amberAccent,
+                      ],
                     ).createShader(Rect.fromLTWH(0, 0, 300, 0)),
                   fontWeight: FontWeight.bold,
                   shadows: [
