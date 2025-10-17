@@ -34,7 +34,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ApiConstants.weather(widget.latitude, widget.longitude),
       );
 
-      print('Response status: ${response.statusCode}');
+      debugPrint('Response status: ${response.statusCode}');
       if (response.statusCode == 200) {
         try {
           final weather = WeatherResponseModel.fromJson(response.data);
@@ -48,7 +48,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             _loading = false;
           });
         } catch (e) {
-          print('Error parsing data: $e');
+          debugPrint('Error parsing data: $e');
           setState(() {
             _loading = false;
           });
@@ -59,7 +59,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         });
       }
     } catch (ex) {
-      print("exception: $ex");
+      debugPrint("exception: $ex");
       setState(() {
         _loading = false;
       });
@@ -89,34 +89,40 @@ class _HomePageScreenState extends State<HomePageScreen> {
               'Weather App',
               style: TextStyle(color: Colors.white),
             ),
+
             actions: [
-              IconButton(
-                onPressed: () {
-                  _alertList != null && _alertList!.alert.isNotEmpty
-                      ? Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NotificationScreen(alertList: _alertList!),
-                          ),
-                        )
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'No weather alerts for this location',
-                            ),
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
-                },
-                icon: Icon(
-                  _alertList != null && _alertList!.alert.isNotEmpty
-                      ? Icons.notifications_active_outlined
-                      : Icons.notifications_none_outlined,
-                  color: _alertList != null && _alertList!.alert.isNotEmpty
-                      ? Colors.redAccent
-                      : ColorConstants.backGroundColor,
-                ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      //check for the weather alertlist and open screen accordingly
+                      _alertList != null && _alertList!.alert.isNotEmpty
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    NotificationScreen(alertList: _alertList!),
+                              ),
+                            )
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'No weather alerts for this location',
+                                ),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                    },
+                    icon: Icon(
+                      _alertList != null && _alertList!.alert.isNotEmpty
+                          ? Icons.notifications_active_outlined
+                          : Icons.notifications_none_outlined,
+                      color: _alertList != null && _alertList!.alert.isNotEmpty
+                          ? Colors.redAccent
+                          : ColorConstants.backGroundColor,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
