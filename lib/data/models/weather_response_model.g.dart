@@ -15,6 +15,9 @@ _WeatherResponseModel _$WeatherResponseModelFromJson(
   current: WeatherCurrentModel.fromJson(
     json['current'] as Map<String, dynamic>,
   ),
+  alerts: json['alerts'] == null
+      ? null
+      : WeatherAlertListModel.fromJson(json['alerts'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$WeatherResponseModelToJson(
@@ -22,4 +25,5 @@ Map<String, dynamic> _$WeatherResponseModelToJson(
 ) => <String, dynamic>{
   'location': instance.location,
   'current': instance.current,
+  'alerts': instance.alerts,
 };

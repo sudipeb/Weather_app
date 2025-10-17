@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
+import 'package:weather_app/data/models/weatheralert_list_model.dart';
+import 'package:weather_app/data/models/weather_alert_model.dart';
 
 import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
@@ -23,6 +25,7 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   WeatherResponseModel? _weather;
+  WeatherAlertListModel? _alertList;
   bool _loading = true;
 
   Future<void> fetchWeatherData() async {
@@ -32,15 +35,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
         ApiConstants.weather(widget.latitude, widget.longitude),
       ); // London
 
-      print('${response.data}');
-      print('${response.statusCode}');
-
+      print('Response status: ${response.statusCode}');
       if (response.statusCode == 200) {
-        final weather = WeatherResponseModel.fromJson(response.data);
-        setState(() {
-          _weather = weather;
-          _loading = false;
-        });
+        try {
+          final weather = WeatherResponseModel.fromJson(response.data);
+          // Create a default empty alert list
+          final alertListModel = WeatherAlertListModel(alert: []);
+
+          setState(() {
+            _weather = weather;
+            _alertList = alertListModel;
+            _loading = false;
+          });
+        } catch (e) {
+          print('Error parsing data: $e');
+          setState(() {
+            _loading = false;
+          });
+        }
       } else {
         setState(() {
           _loading = false;
@@ -80,14 +92,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const NotificationScreen(),
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('No weather alerts for this location'),
+                      duration: Duration(seconds: 2),
                     ),
                   );
                 },
                 icon: const Icon(
-                  Icons.notifications,
+                  Icons.notifications_none_outlined,
                   color: ColorConstants.backGroundColor,
                 ),
               ),
