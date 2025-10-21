@@ -12,7 +12,7 @@ Future<List<Place>> fetchPlaceSuggestions(String query) async {
     final response = await dio.get(
       ApiConstants.cityInfo(query),
       options: Options(
-        headers: {'X-Api-Key': ApiConstants.ninjaapikey}, // your API key
+        headers: {'X-Api-Key': ApiConstants.ninjaapikey}, //your API key
       ),
     );
 

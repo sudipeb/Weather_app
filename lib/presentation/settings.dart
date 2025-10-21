@@ -17,7 +17,7 @@ class _SettingsState extends State<Settings> {
         child: SearchBarWidget(
           onPlaceSelected: (lat, lon) {
             // Handle the selected city here
-            // For example, navigate to home page or fetch weather
+            // For example, navigate to home page and display weather
             debugPrint("Selected city coordinates: $lat, $lon");
           },
         ),

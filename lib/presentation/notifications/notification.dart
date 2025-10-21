@@ -21,6 +21,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
         title: Text('Notifications'),
       ),
       body: ListView.builder(
+        //provides the list of the alerts if any could be null
+        //can only be seen if there is any alerts
         itemCount: alerts.length,
         itemBuilder: (context, index) {
           final alert = alerts[index];
