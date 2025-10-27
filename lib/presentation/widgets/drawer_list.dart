@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/app_router.dart';
+import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -44,6 +45,18 @@ class DrawerList extends StatelessWidget {
           leading: const Icon(Icons.settings),
           title: const Text('About App'),
           onTap: () {},
+        ),
+        ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          leading: const Icon(Icons.rule),
+          title: Text(
+            ThemeNotifier().isDarkMode
+                ? 'Switch to Light Mode'
+                : 'Switch to Dark Mode',
+          ),
+          onTap: () {
+            ThemeNotifier().toggleTheme();
+          },
         ),
       ],
     );

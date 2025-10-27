@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_config.dart';
+import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
 
 void main() async {
@@ -19,7 +21,12 @@ void main() async {
     position = await AppStartup.getCurrentLocation();
   }
 
-  runApp(MyApp(isFirstLaunch: isFirstLaunch, initialPosition: position));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeNotifier(),
+      child: MyApp(isFirstLaunch: isFirstLaunch, initialPosition: position),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -63,6 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
