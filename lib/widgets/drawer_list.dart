@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/settings.dart';
+import 'package:weather_app/app_router.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -23,12 +24,7 @@ class DrawerList extends StatelessWidget {
           leading: const Icon(Icons.settings),
           title: const Text('Settings'),
           onTap: () {
-           Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Settings(), // your page
-  ),
-);
+            context.router.push(const SettingsRoute());
           },
         ),
         ListTile(

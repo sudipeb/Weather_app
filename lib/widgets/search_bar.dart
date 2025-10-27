@@ -36,7 +36,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePageScreen(
+                  builder: (context) => HomeScreen(
                     latitude: place.latitude,
                     longitude: place.longitude,
                   ),

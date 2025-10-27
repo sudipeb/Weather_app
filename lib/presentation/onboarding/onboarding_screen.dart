@@ -1,10 +1,11 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:weather_app/app_router.dart';
 import 'package:weather_app/constants/app_constants.dart';
-import 'package:weather_app/presentation/home/home_page.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
 @RoutePage()
@@ -115,25 +116,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => position == null
-                              ? Center(
-                                  child: SizedBox(
-                                    height: 24,
-                                    width: 24,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: Color(0xFFC75D2C),
-                                    ),
-                                  ),
-                                )
-                              : HomePageScreen(
-                                  latitude: position!.latitude,
-                                  longitude: position!.longitude,
-                                ),
-                        ),
-                      );
+                      if (position == null) {
+                        // show loading dialog or keep current screen
+                        showDialog(
+                          context: context,
+                          builder: (_) => const Center(
+                            child: SizedBox(
+                              height: 24,
+                              width: 24,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Color(0xFFC75D2C),
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        // Navigate to HomePageScreen using AutoRoute
+                        context.router.replace(
+                          HomeRoute(
+                            latitude: position!.latitude,
+                            longitude: position!.longitude,
+                          ),
+                        );
+                      }
                     },
                   )
                 : Container(

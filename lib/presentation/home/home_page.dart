@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/constants/api_constants.dart';
@@ -8,8 +9,9 @@ import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 import 'package:weather_app/widgets/weather_card.dart';
 
-class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({
+@RoutePage()
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({
     super.key,
     required this.latitude,
     required this.longitude,
@@ -18,10 +20,10 @@ class HomePageScreen extends StatefulWidget {
   final double longitude;
 
   @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
+  State<HomeScreen> createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen> {
+class _HomePageScreenState extends State<HomeScreen> {
   WeatherResponseModel? _weather;
   WeatherAlertListModel? _alertList;
 

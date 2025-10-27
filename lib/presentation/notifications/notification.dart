@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/weather_alert_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
 
+@RoutePage()
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key, required this.alertList});
   final WeatherAlertListModel alertList;
