@@ -15,7 +15,6 @@ void main() async {
   Position? position;
 
   if (!isFirstLaunch) {
-    // Fetch location for returning users
     position = await AppStartup.getCurrentLocation();
   }
 

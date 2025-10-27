@@ -23,42 +23,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
   );
-  Future<void> fetchLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    String latitude;
-    String longitude;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      Fluttertoast.showToast(msg: 'Location Service is not  Enabled');
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        Fluttertoast.showToast(msg: 'Permission Denined');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      Fluttertoast.showToast(msg: 'Permission Denined Forever');
-    }
-    Position currentPosition = await Geolocator.getCurrentPosition(
-      locationSettings: locationSettings,
-    );
-    // Fetch weather
-
-    if (mounted) {
-      setState(() {
-        position = currentPosition;
-        latitude = currentPosition.latitude.toString();
-        print(latitude);
-        longitude = currentPosition.longitude.toString();
-        print(longitude);
-      });
-    }
-  }
 
   /// initialized the pagecontroller for movement between onboarding pages
   late final PageController controller;
@@ -69,7 +33,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     // Call the superclass's initState method to ensure proper initialization
     super.initState();
-    fetchLocation();
     // Initialize the PageController to control the PageView
     controller = PageController();
   }
