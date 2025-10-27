@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/app_router.dart';
+import 'package:weather_app/core/utilities/app_startup.dart';
 
-//entry point of every Dart/Flutter app.
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(MyApp());
+
+  await dotenv.load(fileName: ".env");
+
+  final isFirstLaunch = await AppStartup.isFirstLaunch();
+  Position? position;
+
+  if (!isFirstLaunch) {
+    // Fetch location for returning users
+    position = await AppStartup.getCurrentLocation();
+  }
+
+  runApp(MyApp(isFirstLaunch: isFirstLaunch, initialPosition: position));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.isFirstLaunch, this.initialPosition});
+  final bool isFirstLaunch;
+  final Position? initialPosition;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -20,19 +33,36 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
+
   @override
   void initState() {
     super.initState();
-    initialization();
+    _initializeApp();
   }
 
-  void initialization() async {
+  void _initializeApp() async {
+    // Show splash for 3 seconds
     await Future.delayed(const Duration(seconds: 3));
     FlutterNativeSplash.remove();
+
+    // Redirect to the correct initial screen
+    if (widget.isFirstLaunch) {
+      _appRouter.replace(const OnboardingRoute());
+    } else if (widget.initialPosition != null) {
+      _appRouter.replace(
+        HomeRoute(
+          latitude: widget.initialPosition!.latitude,
+          longitude: widget.initialPosition!.longitude,
+        ),
+      );
+    } else {
+      // fallback if location denied
+      _appRouter.replace(const OnboardingRoute());
+    }
   }
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,

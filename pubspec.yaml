@@ -43,6 +43,7 @@ dependencies:
   fluttertoast: ^9.0.0
   flutter_dotenv: ^6.0.0
   auto_route: ^10.1.2
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

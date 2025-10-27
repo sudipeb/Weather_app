@@ -13,7 +13,12 @@ import 'package:weather_app/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(
+      MyApp(
+        isFirstLaunch: true, // simulate first-time launch
+        initialPosition: null, // no location yet
+      ),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

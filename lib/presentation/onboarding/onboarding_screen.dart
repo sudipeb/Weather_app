@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
@@ -115,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         color: Color(0XFFC75D2C),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (position == null) {
                         // show loading dialog or keep current screen
                         showDialog(
@@ -133,6 +134,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       } else {
                         // Navigate to HomePageScreen using AutoRoute
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('isFirstLaunch', false);
+
+                        // Navigate to HomeScreen with latitude & longitude
                         context.router.replace(
                           HomeRoute(
                             latitude: position!.latitude,
