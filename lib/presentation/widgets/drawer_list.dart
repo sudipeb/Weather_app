@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 
@@ -7,7 +8,10 @@ class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
+    // Get the instance of ThemeNotifier from Provider
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
@@ -21,7 +25,7 @@ class DrawerList extends StatelessWidget {
           ),
         ),
         ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: const Icon(Icons.settings),
           title: const Text('Settings'),
           onTap: () {
@@ -29,33 +33,35 @@ class DrawerList extends StatelessWidget {
           },
         ),
         ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.rule),
           title: const Text('Terms And Condition'),
           onTap: () {},
         ),
         ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.person),
           title: const Text('User Profile'),
           onTap: () {},
         ),
         ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.settings),
           title: const Text('About App'),
           onTap: () {},
         ),
+
         ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
-          leading: const Icon(Icons.rule),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+          leading: const Icon(Icons.brightness_6),
           title: Text(
-            ThemeNotifier().isDarkMode
+            themeNotifier.isDarkMode
                 ? 'Switch to Light Mode'
                 : 'Switch to Dark Mode',
           ),
           onTap: () {
-            ThemeNotifier().toggleTheme();
+            themeNotifier.toggleTheme();
+            Navigator.of(context).pop(); // close drawer after toggling
           },
         ),
       ],
