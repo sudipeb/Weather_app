@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
-import 'package:weather_app/presentation/onboarding/onboarding_screen.dart';
+import 'package:weather_app/app_router.dart';
 
 //entry point of every Dart/Flutter app.
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -20,6 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _appRouter = AppRouter();
   @override
   void initState() {
     super.initState();
@@ -33,9 +33,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
     );
   }
 }

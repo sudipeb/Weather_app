@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -6,6 +7,7 @@ import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/presentation/home/home_page.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
+@RoutePage()
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
