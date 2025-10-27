@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/constants/api_constants.dart';
+import 'package:weather_app/core/constants/api_constants.dart';
 import 'package:weather_app/data/models/place_model.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 

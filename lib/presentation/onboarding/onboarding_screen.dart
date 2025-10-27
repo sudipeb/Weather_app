@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/app_router.dart';
-import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
 @RoutePage()

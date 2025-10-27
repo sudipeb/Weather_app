@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/widgets/search_bar.dart';
+import 'package:weather_app/presentation/widgets/search_bar.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {

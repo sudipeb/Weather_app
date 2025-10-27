@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/presentation/home/home_page.dart';
-import '../service/fetch_places.dart';
+import '../../service/fetch_places.dart';
 
 class SearchBarWidget extends StatefulWidget {
   final Function(double lat, double lon) onPlaceSelected;

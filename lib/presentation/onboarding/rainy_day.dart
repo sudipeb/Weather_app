@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 
 class RainyDay extends StatelessWidget {
   const RainyDay({super.key});

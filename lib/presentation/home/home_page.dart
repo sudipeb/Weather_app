@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/app_router.dart';
-import 'package:weather_app/constants/api_constants.dart';
-import 'package:weather_app/constants/app_constants.dart';
+import 'package:weather_app/core/constants/api_constants.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
-import 'package:weather_app/widgets/drawer_list.dart';
-import 'package:weather_app/widgets/weather_card.dart';
+import 'package:weather_app/presentation/widgets/drawer_list.dart';
+import 'package:weather_app/presentation/widgets/weather_card.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
