@@ -75,6 +75,53 @@ class HomeRouteArgs {
 }
 
 /// generated route for
+/// [NotificationScreen]
+class NotificationRoute extends PageRouteInfo<NotificationRouteArgs> {
+  NotificationRoute({
+    Key? key,
+    required WeatherAlertListModel alertList,
+    List<PageRouteInfo>? children,
+  }) : super(
+         NotificationRoute.name,
+         args: NotificationRouteArgs(key: key, alertList: alertList),
+         initialChildren: children,
+       );
+
+  static const String name = 'NotificationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NotificationRouteArgs>();
+      return NotificationScreen(key: args.key, alertList: args.alertList);
+    },
+  );
+}
+
+class NotificationRouteArgs {
+  const NotificationRouteArgs({this.key, required this.alertList});
+
+  final Key? key;
+
+  final WeatherAlertListModel alertList;
+
+  @override
+  String toString() {
+    return 'NotificationRouteArgs{key: $key, alertList: $alertList}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! NotificationRouteArgs) return false;
+    return key == other.key && alertList == other.alertList;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ alertList.hashCode;
+}
+
+/// generated route for
 /// [OnboardingScreen]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})

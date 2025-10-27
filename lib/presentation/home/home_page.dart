@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/app_router.dart';
 import 'package:weather_app/constants/api_constants.dart';
 import 'package:weather_app/constants/app_constants.dart';
 import 'package:weather_app/data/models/weather_response_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
-import 'package:weather_app/presentation/notifications/notification.dart';
 import 'package:weather_app/widgets/drawer_list.dart';
 import 'package:weather_app/widgets/weather_card.dart';
 
@@ -99,12 +99,8 @@ class _HomePageScreenState extends State<HomeScreen> {
                     onPressed: () {
                       //check for the weather alertlist and open screen accordingly
                       _alertList != null && _alertList!.alert.isNotEmpty
-                          ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    NotificationScreen(alertList: _alertList!),
-                              ),
+                          ? context.router.push(
+                              NotificationRoute(alertList: _alertList!),
                             )
                           : ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
