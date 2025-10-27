@@ -20,4 +20,3 @@ class ApiConstants {
     return '$_ninjaBaseUrl/city?name=${Uri.encodeComponent(cityName)}';
   }
 }
-

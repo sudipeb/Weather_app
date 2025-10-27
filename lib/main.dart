@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/app_router.dart';
+import 'package:weather_app/core/baseconfiguration/theme_config.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
 
 void main() async {
@@ -65,6 +66,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
     );
   }
 }
