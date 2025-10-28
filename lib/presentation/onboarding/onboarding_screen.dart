@@ -98,8 +98,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       } else {
                         // Navigate to HomePageScreen using AutoRoute
                         final prefs = await SharedPreferences.getInstance();
-                        await prefs.setBool('isFirstLaunch', false);
-
+                        await prefs.setBool(AppConstants.firstLaunchKey, false);
+                        if (!context.mounted) return;
                         // Navigate to HomeScreen with latitude & longitude
                         context.router.replace(
                           HomeRoute(

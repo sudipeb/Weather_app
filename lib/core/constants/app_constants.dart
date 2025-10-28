@@ -39,3 +39,7 @@ class ColorConstants {
     colors: [Color(0xFF3E2D8F), Color(0XFF9D52AC)],
   );
 }
+
+class AppConstants {
+  static const String firstLaunchKey = 'isFirstLaunch';
+}

@@ -2,6 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 
 class AppStartup {
   static final LocationSettings locationSettings = LocationSettings(
@@ -12,13 +13,13 @@ class AppStartup {
   /// Check if this is the first launch
   static Future<bool> isFirstLaunch() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isFirstLaunch') ?? true;
+    return prefs.getBool(AppConstants.firstLaunchKey) ?? true;
   }
 
   /// Mark onboarding completed
   static Future<void> completeOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isFirstLaunch', false);
+    await prefs.setBool(AppConstants.firstLaunchKey, false);
   }
 
   /// Request location permissions and get current position
