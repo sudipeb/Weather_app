@@ -180,7 +180,10 @@ class _HomePageScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               'UV: ${_weather!.current.uv}',
-                              style: const TextStyle(fontSize: 20),
+                              //Todo: make consistent across all the app
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleSmall?.copyWith(),
                             ),
                             const SizedBox(width: 10),
                             Text(

@@ -21,6 +21,6 @@ class ThemeNotifier with ChangeNotifier {
   void loadTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isDarkMode = prefs.getBool('isDarkMode') ?? false;
-    notifyListeners();
+    notifyListeners();  
   }
 }

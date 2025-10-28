@@ -33,6 +33,8 @@ class AppTheme {
       bodyLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.white70),
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      
+      titleSmall:TextStyle(fontSize:20, color:Colors.white)
     ),
     // Icon theme
     iconTheme: const IconThemeData(color: Colors.white),
