@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/app_startup.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
 @RoutePage()
@@ -35,6 +36,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
     // Initialize the PageController to control the PageView
     controller = PageController();
+    _initLocation();
   }
 
   @override
@@ -42,6 +44,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     //Clean up the controller when the widget is removed
     controller.dispose();
     super.dispose(); // Always call super.dispose()
+  }
+
+  Future<void> _initLocation() async {
+    final pos = await AppStartup.getCurrentLocation();
+    print(pos);
+    setState(() {
+      position = pos;
+    });
   }
 
   @override
@@ -80,6 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () async {
+                      print(position);
                       if (position == null) {
                         // show loading dialog or keep current screen
                         showDialog(
