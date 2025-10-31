@@ -17,8 +17,8 @@ abstract class WeatherResponseModel
   const factory WeatherResponseModel({
     required WeatherLocationModel location,
     required WeatherCurrentModel current,
-    WeatherAlertListModel? alerts,
     required ForecastModel forecast,
+    WeatherAlertListModel? alerts,
   }) = _WeatherResponseModel;
 
   factory WeatherResponseModel.fromJson(Map<String, Object?> json) =>

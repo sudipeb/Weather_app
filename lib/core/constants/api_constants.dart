@@ -7,7 +7,7 @@ class ApiConstants {
   static const String _baseUrl = 'https://api.weatherapi.com/v1';
   static const String _ninjaBaseUrl = 'https://api.api-ninjas.com/v1';
   // WeatherAPI: 7-day forecast by coordinates
-  static String weather(double lat, double lng) {
+  static String weather(double lat, double lng) { 
     return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=7';
   }
 

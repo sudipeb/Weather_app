@@ -37,16 +37,16 @@ class _HomePageScreenState extends State<HomeScreen> {
       );
 
       debugPrint('Response status: ${response.statusCode}');
+      debugPrint('response data{$response}');
       if (response.statusCode == 200) {
         try {
           final weather = WeatherResponseModel.fromJson(response.data);
-
           // Create a default empty alert list
-          final alertListModel = WeatherAlertListModel(alert: []);
+          // final alertListModel = WeatherAlertListModel(alert: []);
 
           setState(() {
             _weather = weather;
-            _alertList = alertListModel;
+            // _alertList = alertListModel;
 
             _loading = false;
           });
@@ -94,35 +94,35 @@ class _HomePageScreenState extends State<HomeScreen> {
             ),
 
             actions: [
-              // Row(
-              //   children: [
-              //     IconButton(
-              //       onPressed: () {
-              //         //check for the weather alertlist and open screen accordingly
-              //         _alertList != null && _alertList!.alert.isNotEmpty
-              //             ? context.router.push(
-              //                 NotificationRoute(alertList: _alertList!),
-              //               )
-              //             : ScaffoldMessenger.of(context).showSnackBar(
-              //                 const SnackBar(
-              //                   content: Text(
-              //                     'No weather alerts for this location',
-              //                   ),
-              //                   duration: Duration(seconds: 2),
-              //                 ),
-              //               );
-              //       },
-              //       icon: Icon(
-              //         _alertList != null && _alertList!.alert.isNotEmpty
-              //             ? Icons.notifications_active_outlined
-              //             : Icons.notifications_none_outlined,
-              //         color: _alertList != null && _alertList!.alert.isNotEmpty
-              //             ? Colors.redAccent
-              //             : ColorConstants.backGroundColor,
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      //check for the weather alertlist and open screen accordingly
+                      _alertList != null && _alertList!.alert.isNotEmpty
+                          ? context.router.push(
+                              NotificationRoute(alertList: _alertList!),
+                            )
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'No weather alerts for this location',
+                                ),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                    },
+                    icon: Icon(
+                      _alertList != null && _alertList!.alert.isNotEmpty
+                          ? Icons.notifications_active_outlined
+                          : Icons.notifications_none_outlined,
+                      color: _alertList != null && _alertList!.alert.isNotEmpty
+                          ? Colors.redAccent
+                          : ColorConstants.backGroundColor,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           body: _loading

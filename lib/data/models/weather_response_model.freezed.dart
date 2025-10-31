@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WeatherResponseModel {
 
- WeatherLocationModel get location; WeatherCurrentModel get current; WeatherAlertListModel? get alerts; ForecastModel get forecast;
+ WeatherLocationModel get location; WeatherCurrentModel get current; ForecastModel get forecast; WeatherAlertListModel? get alerts;
 /// Create a copy of WeatherResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $WeatherResponseModelCopyWith<WeatherResponseModel> get copyWith => _$WeatherRes
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeatherResponseModel&&(identical(other.location, location) || other.location == location)&&(identical(other.current, current) || other.current == current)&&(identical(other.alerts, alerts) || other.alerts == alerts)&&(identical(other.forecast, forecast) || other.forecast == forecast));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeatherResponseModel&&(identical(other.location, location) || other.location == location)&&(identical(other.current, current) || other.current == current)&&(identical(other.forecast, forecast) || other.forecast == forecast)&&(identical(other.alerts, alerts) || other.alerts == alerts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,location,current,alerts,forecast);
+int get hashCode => Object.hash(runtimeType,location,current,forecast,alerts);
 
 @override
 String toString() {
-  return 'WeatherResponseModel(location: $location, current: $current, alerts: $alerts, forecast: $forecast)';
+  return 'WeatherResponseModel(location: $location, current: $current, forecast: $forecast, alerts: $alerts)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $WeatherResponseModelCopyWith<$Res>  {
   factory $WeatherResponseModelCopyWith(WeatherResponseModel value, $Res Function(WeatherResponseModel) _then) = _$WeatherResponseModelCopyWithImpl;
 @useResult
 $Res call({
- WeatherLocationModel location, WeatherCurrentModel current, WeatherAlertListModel? alerts, ForecastModel forecast
+ WeatherLocationModel location, WeatherCurrentModel current, ForecastModel forecast, WeatherAlertListModel? alerts
 });
 
 
-$WeatherLocationModelCopyWith<$Res> get location;$WeatherCurrentModelCopyWith<$Res> get current;$WeatherAlertListModelCopyWith<$Res>? get alerts;$ForecastModelCopyWith<$Res> get forecast;
+$WeatherLocationModelCopyWith<$Res> get location;$WeatherCurrentModelCopyWith<$Res> get current;$ForecastModelCopyWith<$Res> get forecast;$WeatherAlertListModelCopyWith<$Res>? get alerts;
 
 }
 /// @nodoc
@@ -65,13 +65,13 @@ class _$WeatherResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? location = null,Object? current = null,Object? alerts = freezed,Object? forecast = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? location = null,Object? current = null,Object? forecast = null,Object? alerts = freezed,}) {
   return _then(_self.copyWith(
 location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as WeatherLocationModel,current: null == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
-as WeatherCurrentModel,alerts: freezed == alerts ? _self.alerts : alerts // ignore: cast_nullable_to_non_nullable
-as WeatherAlertListModel?,forecast: null == forecast ? _self.forecast : forecast // ignore: cast_nullable_to_non_nullable
-as ForecastModel,
+as WeatherCurrentModel,forecast: null == forecast ? _self.forecast : forecast // ignore: cast_nullable_to_non_nullable
+as ForecastModel,alerts: freezed == alerts ? _self.alerts : alerts // ignore: cast_nullable_to_non_nullable
+as WeatherAlertListModel?,
   ));
 }
 /// Create a copy of WeatherResponseModel
@@ -96,6 +96,15 @@ $WeatherCurrentModelCopyWith<$Res> get current {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$ForecastModelCopyWith<$Res> get forecast {
+  
+  return $ForecastModelCopyWith<$Res>(_self.forecast, (value) {
+    return _then(_self.copyWith(forecast: value));
+  });
+}/// Create a copy of WeatherResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $WeatherAlertListModelCopyWith<$Res>? get alerts {
     if (_self.alerts == null) {
     return null;
@@ -103,15 +112,6 @@ $WeatherAlertListModelCopyWith<$Res>? get alerts {
 
   return $WeatherAlertListModelCopyWith<$Res>(_self.alerts!, (value) {
     return _then(_self.copyWith(alerts: value));
-  });
-}/// Create a copy of WeatherResponseModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ForecastModelCopyWith<$Res> get forecast {
-  
-  return $ForecastModelCopyWith<$Res>(_self.forecast, (value) {
-    return _then(_self.copyWith(forecast: value));
   });
 }
 }
@@ -195,10 +195,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeatherLocationModel location,  WeatherCurrentModel current,  WeatherAlertListModel? alerts,  ForecastModel forecast)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeatherLocationModel location,  WeatherCurrentModel current,  ForecastModel forecast,  WeatherAlertListModel? alerts)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherResponseModel() when $default != null:
-return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _:
+return $default(_that.location,_that.current,_that.forecast,_that.alerts);case _:
   return orElse();
 
 }
@@ -216,10 +216,10 @@ return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeatherLocationModel location,  WeatherCurrentModel current,  WeatherAlertListModel? alerts,  ForecastModel forecast)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeatherLocationModel location,  WeatherCurrentModel current,  ForecastModel forecast,  WeatherAlertListModel? alerts)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherResponseModel():
-return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _:
+return $default(_that.location,_that.current,_that.forecast,_that.alerts);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -236,10 +236,10 @@ return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeatherLocationModel location,  WeatherCurrentModel current,  WeatherAlertListModel? alerts,  ForecastModel forecast)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeatherLocationModel location,  WeatherCurrentModel current,  ForecastModel forecast,  WeatherAlertListModel? alerts)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherResponseModel() when $default != null:
-return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _:
+return $default(_that.location,_that.current,_that.forecast,_that.alerts);case _:
   return null;
 
 }
@@ -251,13 +251,13 @@ return $default(_that.location,_that.current,_that.alerts,_that.forecast);case _
 @JsonSerializable()
 
 class _WeatherResponseModel implements WeatherResponseModel {
-  const _WeatherResponseModel({required this.location, required this.current, this.alerts, required this.forecast});
+  const _WeatherResponseModel({required this.location, required this.current, required this.forecast, this.alerts});
   factory _WeatherResponseModel.fromJson(Map<String, dynamic> json) => _$WeatherResponseModelFromJson(json);
 
 @override final  WeatherLocationModel location;
 @override final  WeatherCurrentModel current;
-@override final  WeatherAlertListModel? alerts;
 @override final  ForecastModel forecast;
+@override final  WeatherAlertListModel? alerts;
 
 /// Create a copy of WeatherResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -272,16 +272,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeatherResponseModel&&(identical(other.location, location) || other.location == location)&&(identical(other.current, current) || other.current == current)&&(identical(other.alerts, alerts) || other.alerts == alerts)&&(identical(other.forecast, forecast) || other.forecast == forecast));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeatherResponseModel&&(identical(other.location, location) || other.location == location)&&(identical(other.current, current) || other.current == current)&&(identical(other.forecast, forecast) || other.forecast == forecast)&&(identical(other.alerts, alerts) || other.alerts == alerts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,location,current,alerts,forecast);
+int get hashCode => Object.hash(runtimeType,location,current,forecast,alerts);
 
 @override
 String toString() {
-  return 'WeatherResponseModel(location: $location, current: $current, alerts: $alerts, forecast: $forecast)';
+  return 'WeatherResponseModel(location: $location, current: $current, forecast: $forecast, alerts: $alerts)';
 }
 
 
@@ -292,11 +292,11 @@ abstract mixin class _$WeatherResponseModelCopyWith<$Res> implements $WeatherRes
   factory _$WeatherResponseModelCopyWith(_WeatherResponseModel value, $Res Function(_WeatherResponseModel) _then) = __$WeatherResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- WeatherLocationModel location, WeatherCurrentModel current, WeatherAlertListModel? alerts, ForecastModel forecast
+ WeatherLocationModel location, WeatherCurrentModel current, ForecastModel forecast, WeatherAlertListModel? alerts
 });
 
 
-@override $WeatherLocationModelCopyWith<$Res> get location;@override $WeatherCurrentModelCopyWith<$Res> get current;@override $WeatherAlertListModelCopyWith<$Res>? get alerts;@override $ForecastModelCopyWith<$Res> get forecast;
+@override $WeatherLocationModelCopyWith<$Res> get location;@override $WeatherCurrentModelCopyWith<$Res> get current;@override $ForecastModelCopyWith<$Res> get forecast;@override $WeatherAlertListModelCopyWith<$Res>? get alerts;
 
 }
 /// @nodoc
@@ -309,13 +309,13 @@ class __$WeatherResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? location = null,Object? current = null,Object? alerts = freezed,Object? forecast = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? location = null,Object? current = null,Object? forecast = null,Object? alerts = freezed,}) {
   return _then(_WeatherResponseModel(
 location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as WeatherLocationModel,current: null == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
-as WeatherCurrentModel,alerts: freezed == alerts ? _self.alerts : alerts // ignore: cast_nullable_to_non_nullable
-as WeatherAlertListModel?,forecast: null == forecast ? _self.forecast : forecast // ignore: cast_nullable_to_non_nullable
-as ForecastModel,
+as WeatherCurrentModel,forecast: null == forecast ? _self.forecast : forecast // ignore: cast_nullable_to_non_nullable
+as ForecastModel,alerts: freezed == alerts ? _self.alerts : alerts // ignore: cast_nullable_to_non_nullable
+as WeatherAlertListModel?,
   ));
 }
 
@@ -341,6 +341,15 @@ $WeatherCurrentModelCopyWith<$Res> get current {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$ForecastModelCopyWith<$Res> get forecast {
+  
+  return $ForecastModelCopyWith<$Res>(_self.forecast, (value) {
+    return _then(_self.copyWith(forecast: value));
+  });
+}/// Create a copy of WeatherResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $WeatherAlertListModelCopyWith<$Res>? get alerts {
     if (_self.alerts == null) {
     return null;
@@ -348,15 +357,6 @@ $WeatherAlertListModelCopyWith<$Res>? get alerts {
 
   return $WeatherAlertListModelCopyWith<$Res>(_self.alerts!, (value) {
     return _then(_self.copyWith(alerts: value));
-  });
-}/// Create a copy of WeatherResponseModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$ForecastModelCopyWith<$Res> get forecast {
-  
-  return $ForecastModelCopyWith<$Res>(_self.forecast, (value) {
-    return _then(_self.copyWith(forecast: value));
   });
 }
 }
