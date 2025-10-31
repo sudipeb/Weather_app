@@ -90,7 +90,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () async {
-                      print(position);
                       if (position == null) {
                         // show loading dialog or keep current screen
                         showDialog(
