@@ -1,5 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/app_router.dart';
+import 'package:weather_app/presentation/blocs/weather_bloc.dart';
+import 'package:weather_app/presentation/blocs/weather_event.dart';
+import 'package:weather_app/presentation/blocs/weather_state.dart';
 import 'package:weather_app/presentation/widgets/search_bar.dart';
 
 @RoutePage()
@@ -13,15 +18,71 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: SafeArea(
-        child: SearchBarWidget(
-          onPlaceSelected: (lat, lon) {
-            // Handle the selected city here
-            // For example, navigate to home page and display weather
-            debugPrint("Selected city coordinates: $lat, $lon");
-          },
+    return BlocListener<WeatherBloc, WeatherState>(
+      listener: (context, state) {
+        // Navigate to home screen when weather is loaded
+        if (state is WeatherLoaded) {
+          context.router.replace(
+            HomeRoute(
+              latitude: state.weather.location.lat,
+              longitude: state.weather.location.lon,
+            ),
+          );
+        } else if (state is WeatherError) {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed to load weather: ${state.message}'),
+              backgroundColor: Colors.red,
+              action: SnackBarAction(
+                label: 'Dismiss',
+                textColor: Colors.white,
+                onPressed: () {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                },
+              ),
+            ),
+          );
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Search Location')),
+        body: SafeArea(
+          child: Column(
+            children: [
+              SearchBarWidget(
+                onPlaceSelected: (lat, lon) {
+                  // Dispatch weather fetch event with selected location
+                  context.read<WeatherBloc>().add(
+                    FetchWeather(latitude: lat, longitude: lon),
+                  );
+                },
+              ),
+              // Show loading indicator when fetching weather
+              BlocBuilder<WeatherBloc, WeatherState>(
+                buildWhen: (previous, current) {
+                  // Only rebuild when transitioning to/from loading state
+                  return (previous is! WeatherLoading && current is WeatherLoading) ||
+                         (previous is WeatherLoading && current is! WeatherLoading);
+                },
+                builder: (context, state) {
+                  if (state is WeatherLoading) {
+                    return const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 16),
+                          Text('Loading weather data...'),
+                        ],
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

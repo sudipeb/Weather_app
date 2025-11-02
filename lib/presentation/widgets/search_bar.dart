@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/home/home_page.dart';
 import '../../service/fetch_places.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -25,23 +24,13 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         return places.map((place) {
           return ListTile(
             title: Text(place.name),
+            subtitle: Text('${place.latitude.toStringAsFixed(2)}, ${place.longitude.toStringAsFixed(2)}'),
             onTap: () {
               // Close the search bar and keep text
               controller.closeView(place.name);
 
-              // Call the callback
+              // Call the callback - BlocListener will handle navigation
               widget.onPlaceSelected(place.latitude, place.longitude);
-
-              // Navigate to HomePageScreen
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                    latitude: place.latitude,
-                    longitude: place.longitude,
-                  ),
-                ),
-              );
             },
           );
         }).toList();
