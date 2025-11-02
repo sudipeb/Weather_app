@@ -6,13 +6,19 @@ class ApiConstants {
   static const String ninjaapikey = 'LxLdN1E2YiENjEyCCNDUwQ==OxNCbwXMxZJ37iDJ';
   static const String _baseUrl = 'https://api.weatherapi.com/v1';
   static const String _ninjaBaseUrl = 'https://api.api-ninjas.com/v1';
-  // WeatherAPI: 7-day forecast by coordinates
-  static String weather(double lat, double lng) { 
-    return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=7';
+
+  // WeatherAPI Forecast Days Configuration
+  // Free tier: 3 days | Paid plans: up to 14 days
+  // Update this value based on your API plan
+  static const int forecastDays = 7;
+
+  // WeatherAPI: Forecast by coordinates
+  static String weather(double lat, double lng) {
+    return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=$forecastDays';
   }
 
   static String forecastWeather(double lat, double lng) {
-    return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=7';
+    return '$_baseUrl/forecast.json?key=$weatherApiKey&q=$lat,$lng&days=$forecastDays';
   }
 
   // API Ninjas: City info by name

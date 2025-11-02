@@ -30,10 +30,10 @@ class WeatherCurrentEntity {
   final double uv;
   final double gust_mph;
   final double gust_kph;
-  final double short_rad;
-  final double diff_rad;
-  final double dni;
-  final double gti;
+  final double? short_rad;
+  final double? diff_rad;
+  final double? dni;
+  final double? gti;
 
   WeatherCurrentEntity({
     required this.last_updated_epoch,
@@ -65,9 +65,9 @@ class WeatherCurrentEntity {
     required this.uv,
     required this.gust_mph,
     required this.gust_kph,
-    required this.short_rad,
-    required this.diff_rad,
-    required this.dni,
-    required this.gti,
+    this.short_rad,
+    this.diff_rad,
+    this.dni,
+    this.gti,
   });
 }

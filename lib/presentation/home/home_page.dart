@@ -37,7 +37,6 @@ class _HomePageScreenState extends State<HomeScreen> {
       );
 
       debugPrint('Response status: ${response.statusCode}');
-      debugPrint('response data{$response}');
       if (response.statusCode == 200) {
         try {
           final weather = WeatherResponseModel.fromJson(response.data);
