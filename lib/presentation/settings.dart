@@ -102,14 +102,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   return const SizedBox.shrink();
                 },
               ),
-              Text('Recently Searched', style: TextStyle(color: Colors.black)),
-              Column(
-                children: history.map((item) {
-                  return ListTile(
-                    title: Text(item.name),
-                    subtitle: Text('${item.latitude}, ${item.longitude}'),
-                  );
-                }).toList(),
+              Text(
+                'Recently Searched',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  children: history.map((item) {
+                    return Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ListTile(
+                        tileColor: Colors.blueGrey,
+                        style: ListTileStyle.list,
+                        titleTextStyle: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        leading: Icon(Icons.place),
+                        title: Text(item.name),
+                        subtitle: Text('${item.latitude}, ${item.longitude}'),
+                        subtitleTextStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ],
           ),
