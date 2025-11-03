@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:weather_app/app_router.dart';
-import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/data/repositories/search_history_repo.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 
