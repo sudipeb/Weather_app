@@ -26,8 +26,8 @@ class DrawerList extends StatelessWidget {
         ),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-          leading: const Icon(Icons.settings),
-          title: const Text('Settings'),
+          leading: const Icon(Icons.search),
+          title: const Text('Search For Location'),
           onTap: () {
             context.router.push(const SettingsRoute());
           },
