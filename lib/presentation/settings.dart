@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 import 'package:weather_app/presentation/blocs/weather_event.dart';
 import 'package:weather_app/presentation/blocs/weather_state.dart';
@@ -58,12 +59,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   );
                 },
               ),
+              SizedBox(height: 300),
               // Show loading indicator when fetching weather
               BlocBuilder<WeatherBloc, WeatherState>(
                 buildWhen: (previous, current) {
                   // Only rebuild when transitioning to/from loading state
-                  return (previous is! WeatherLoading && current is WeatherLoading) ||
-                         (previous is WeatherLoading && current is! WeatherLoading);
+                  return (previous is! WeatherLoading &&
+                          current is WeatherLoading) ||
+                      (previous is WeatherLoading &&
+                          current is! WeatherLoading);
                 },
                 builder: (context, state) {
                   if (state is WeatherLoading) {
@@ -71,7 +75,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       padding: EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          CircularProgressIndicator(),
+                          CircularProgressIndicator(
+                            color: Colors.purpleAccent,
+                            strokeWidth: 4,
+                          ),
                           SizedBox(height: 16),
                           Text('Loading weather data...'),
                         ],

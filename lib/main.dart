@@ -16,7 +16,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Initialize the hive app flutter
-  await Hive.initFlutter();
+  // await Hive.initFlutter();
   // Open the Hive box to store items
   // await Hive.openBox(StringConstants.hiveBox);
   await dotenv.load(fileName: ".env");
