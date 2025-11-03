@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_config.dart';
@@ -14,7 +15,10 @@ import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
+  // Initialize the hive app flutter
+  await Hive.initFlutter();
+  // Open the Hive box to store items
+  // await Hive.openBox(StringConstants.hiveBox);
   await dotenv.load(fileName: ".env");
 
   final isFirstLaunch = await AppStartup.isFirstLaunch();
