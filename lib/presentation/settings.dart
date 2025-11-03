@@ -47,7 +47,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Search Location')),
+        appBar: AppBar(
+          title: const Text(
+            'Search Location',
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Colors.indigoAccent,
+        ),
         body: SafeArea(
           child: Column(
             children: [
