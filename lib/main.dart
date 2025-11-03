@@ -19,6 +19,7 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Initialize the hive app flutter
   await Hive.initFlutter();
+
   Hive.registerAdapter(LocationSearchAdapter());
 
   await Hive.openBox<LocationSearch>('searchHistory');

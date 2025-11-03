@@ -115,19 +115,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: history.map((item) {
                     return Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: ListTile(
-                        tileColor: Colors.blueGrey,
-                        style: ListTileStyle.list,
-                        titleTextStyle: TextStyle(
+                      child: Dismissible(
+                        key: Key(
+                          item.name,
+                        ), // Ensure each item has a unique key
+                        direction: DismissDirection
+                            .endToStart, // swipe from right to left
+                        background: Container(
                           color: Colors.red,
-                          fontWeight: FontWeight.bold,
+                          alignment: Alignment.centerRight,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Icon(Icons.delete, color: Colors.white),
                         ),
-                        leading: Icon(Icons.place),
-                        title: Text(item.name),
-                        subtitle: Text('${item.latitude}, ${item.longitude}'),
-                        subtitleTextStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                        onDismissed: (direction) {
+                          searchRepo.deleteItem(item.name);
+                          setState(() {
+                            history.remove(
+                              item,
+                            ); // Remove the item from the list
+                          });
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('${item.name} removed')),
+                          );
+                        },
+                        child: ListTile(
+                          tileColor: Colors.blueGrey,
+                          style: ListTileStyle.list,
+                          titleTextStyle: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          leading: Icon(Icons.place),
+                          title: Text(item.name),
+                          subtitle: Text('${item.latitude}, ${item.longitude}'),
+                          subtitleTextStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     );
