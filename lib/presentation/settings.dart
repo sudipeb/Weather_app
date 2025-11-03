@@ -5,7 +5,8 @@ import 'package:hive/hive.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/data/repositories/search_history_repo.dart';
-import 'package:weather_app/domain/entity/location_hive/location_search.dart';
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
+
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 import 'package:weather_app/presentation/blocs/weather_event.dart';
 import 'package:weather_app/presentation/blocs/weather_state.dart';
@@ -22,7 +23,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    final searchBox = Hive.box<LocationSearch>('searchHistory');
+    final searchBox = Hive.box<Place>('searchHistory');
     final searchRepo = SearchHistoryRepository(searchBox);
     final history = searchRepo.getHistory();
 

@@ -1,12 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:weather_app/domain/entity/location_hive/location_search.dart';
+
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 
 /// Repository responsible for managing search history using Hive local storage.
 class SearchHistoryRepository {
-  ///Hive box that stores all [LocationSearch] objects.
-  final Box<LocationSearch> _box;
+  ///Hive box that stores all [Place] objects.
+  final Box<Place> _box;
   SearchHistoryRepository(this._box);
-  Future<void> addSearch(LocationSearch search) async {
+  Future<void> addSearch(Place search) async {
     final existingLocation = _box.values.any(
       (item) => item.name.toLowerCase() == search.name.toLowerCase(),
     );
@@ -15,7 +16,7 @@ class SearchHistoryRepository {
     }
   }
 
-  List<LocationSearch> getHistory() => _box.values.toList().reversed.toList();
+  List<Place> getHistory() => _box.values.toList().reversed.toList();
   Future<void> clearHistory() async => _box.clear();
   Future<void> deleteItem(String name) async {
     for (var key in _box.keys) {

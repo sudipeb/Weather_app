@@ -11,7 +11,8 @@ import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
 import 'package:weather_app/data/datasource/location_search_adapters.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
-import 'package:weather_app/domain/entity/location_hive/location_search.dart';
+
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ void main() async {
 
   Hive.registerAdapter(LocationSearchAdapter());
 
-  await Hive.openBox<LocationSearch>('searchHistory');
+  await Hive.openBox<Place>('searchHistory');
 
   await dotenv.load(fileName: ".env");
 

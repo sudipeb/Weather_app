@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/repositories/search_history_repo.dart';
-import 'package:weather_app/domain/entity/location_hive/location_search.dart';
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
+
 import '../../service/fetch_places.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -50,7 +51,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                     // Close the search bar and keep text
                     controller.closeView(place.name);
                     await widget.searchRepo.addSearch(
-                      LocationSearch(
+                      Place(
                         name: place.name,
                         latitude: place.latitude,
                         longitude: place.longitude,

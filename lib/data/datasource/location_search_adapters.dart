@@ -1,17 +1,17 @@
 import 'package:hive/hive.dart';
-import 'package:weather_app/domain/entity/location_hive/location_search.dart';
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 
-class LocationSearchAdapter extends TypeAdapter<LocationSearch> {
+class LocationSearchAdapter extends TypeAdapter<Place> {
   @override
   final int typeId = 0;
 
   @override
-  LocationSearch read(BinaryReader reader) {
+  Place read(BinaryReader reader) {
     final numOffFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOffFields; i++) reader.readByte(): reader.read(),
     };
-    return LocationSearch(
+    return Place(
       name: fields[0] as String,
       latitude: fields[1] as double,
       longitude: fields[2] as double,
@@ -19,7 +19,7 @@ class LocationSearchAdapter extends TypeAdapter<LocationSearch> {
   }
 
   @override
-  void write(BinaryWriter writer, LocationSearch obj) {
+  void write(BinaryWriter writer, Place obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
