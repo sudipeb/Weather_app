@@ -9,16 +9,20 @@ import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_config.dart';
 import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
+import 'package:weather_app/data/datasource/location_search_adapters.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
+import 'package:weather_app/domain/entity/location_hive/location_search.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Initialize the hive app flutter
-  // await Hive.initFlutter();
-  // Open the Hive box to store items
-  // await Hive.openBox(StringConstants.hiveBox);
+  await Hive.initFlutter();
+  Hive.registerAdapter(LocationSearchAdapter());
+
+  await Hive.openBox<LocationSearch>('searchHistory');
+
   await dotenv.load(fileName: ".env");
 
   final isFirstLaunch = await AppStartup.isFirstLaunch();

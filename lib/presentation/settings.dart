@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/data/repositories/search_history_repo.dart';
+import 'package:weather_app/domain/entity/location_hive/location_search.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 import 'package:weather_app/presentation/blocs/weather_event.dart';
 import 'package:weather_app/presentation/blocs/weather_state.dart';
@@ -19,6 +22,10 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    final searchBox = Hive.box<LocationSearch>('searchHistory');
+    final searchRepo = SearchHistoryRepository(searchBox);
+    final history = searchRepo.getHistory();
+
     return BlocListener<WeatherBloc, WeatherState>(
       listener: (context, state) {
         // Navigate to home screen when weather is loaded
@@ -58,6 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             children: [
               SearchBarWidget(
+                searchRepo: searchRepo,
                 onPlaceSelected: (lat, lon) {
                   // Dispatch weather fetch event with selected location
                   context.read<WeatherBloc>().add(
@@ -95,6 +103,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               Text('Recently Searched', style: TextStyle(color: Colors.black)),
+              Column(
+                children: history.map((item) {
+                  return ListTile(
+                    title: Text(item.name),
+                    subtitle: Text('${item.latitude}, ${item.longitude}'),
+                  );
+                }).toList(),
+              ),
             ],
           ),
         ),
