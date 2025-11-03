@@ -20,7 +20,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           SizedBox(height: 20),
           SearchAnchor.bar(
             scrollPadding: EdgeInsets.all(20),
-            viewBarPadding: EdgeInsets.all(20),
             isFullScreen: false,
             barBackgroundColor: MaterialStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),

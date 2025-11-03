@@ -94,6 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   return const SizedBox.shrink();
                 },
               ),
+              Text('Recently Searched', style: TextStyle(color: Colors.black)),
             ],
           ),
         ),
