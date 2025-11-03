@@ -1,19 +1,39 @@
-import 'package:weather_app/data/models/weather_location_model.dart';
+import 'package:equatable/equatable.dart';
+import 'package:weather_app/data/models/weather_response_model.dart';
 
-sealed class WeatherState {
+sealed class WeatherState extends Equatable {
   const WeatherState();
+
+  @override
+  List<Object?> get props => [];
 }
 
-final class CurrentLocationLoading extends WeatherState {
-  const CurrentLocationLoading();
+/// Initial state before any weather data is loaded
+final class WeatherInitial extends WeatherState {
+  const WeatherInitial();
 }
 
-final class WeatherLocationLoaded extends WeatherState {
-  const WeatherLocationLoaded(this.location);
-  final WeatherLocationModel location;
+/// State when weather data is being loaded
+final class WeatherLoading extends WeatherState {
+  const WeatherLoading();
 }
 
-final class LocationError extends WeatherState {
+/// State when weather data is successfully loaded
+final class WeatherLoaded extends WeatherState {
+  const WeatherLoaded(this.weather);
+
+  final WeatherResponseModel weather;
+
+  @override
+  List<Object?> get props => [weather];
+}
+
+/// State when there's an error loading weather data
+final class WeatherError extends WeatherState {
+  const WeatherError(this.message);
+
   final String message;
-  const LocationError(this.message);
+
+  @override
+  List<Object?> get props => [message];
 }

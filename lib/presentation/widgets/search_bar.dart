@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/presentation/home/home_page.dart';
 import '../../service/fetch_places.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -13,39 +12,48 @@ class SearchBarWidget extends StatefulWidget {
 class _SearchBarWidgetState extends State<SearchBarWidget> {
   @override
   Widget build(BuildContext context) {
-    return SearchAnchor.bar(
-      barHintText: 'Search city',
-      suggestionsBuilder: (context, controller) async {
-        if (controller.text.isEmpty) {
-          return [const Text('Type a city to search')];
-        }
+    return SafeArea(
+      child: Column(
+        children: [
+          SizedBox(height: 5),
 
-        final places = await fetchPlaceSuggestions(controller.text);
+          SizedBox(height: 20),
+          SearchAnchor.bar(
+            scrollPadding: EdgeInsets.all(20),
+            isFullScreen: false,
+            barBackgroundColor: MaterialStateProperty.all<Color>(
+              const Color.fromARGB(255, 135, 201, 137),
+            ),
+            barOverlayColor: MaterialStateProperty.all<Color>(
+              const Color.fromARGB(255, 135, 201, 137),
+            ),
+            barHintText: 'Search city',
+            suggestionsBuilder: (context, controller) async {
+              if (controller.text.isEmpty) {
+                return [const Text('Type a city to search')];
+              }
 
-        return places.map((place) {
-          return ListTile(
-            title: Text(place.name),
-            onTap: () {
-              // Close the search bar and keep text
-              controller.closeView(place.name);
+              final places = await fetchPlaceSuggestions(controller.text);
 
-              // Call the callback
-              widget.onPlaceSelected(place.latitude, place.longitude);
-
-              // Navigate to HomePageScreen
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                    latitude: place.latitude,
-                    longitude: place.longitude,
+              return places.map((place) {
+                return ListTile(
+                  title: Text(place.name),
+                  subtitle: Text(
+                    '${place.latitude.toStringAsFixed(2)}, ${place.longitude.toStringAsFixed(2)}',
                   ),
-                ),
-              );
+                  onTap: () {
+                    // Close the search bar and keep text
+                    controller.closeView(place.name);
+
+                    // Call the callback - BlocListener will handle navigation
+                    widget.onPlaceSelected(place.latitude, place.longitude);
+                  },
+                );
+              }).toList();
             },
-          );
-        }).toList();
-      },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WeatherCurrentModel {
 
- int get last_updated_epoch; String get last_updated; double get temp_c; double get temp_f; int get is_day; WeatherConditionModel get condition; double get wind_mph; double get wind_kph; int get wind_degree; String get wind_dir; double get pressure_mb; double get pressure_in; double get precip_mm; double get precip_in; int get humidity; int get cloud; double get feelslike_c; double get feelslike_f; double get windchill_c; double get windchill_f; double get heatindex_c; double get heatindex_f; double get dewpoint_c; double get dewpoint_f; double get vis_km; double get vis_miles; double get uv; double get gust_mph; double get gust_kph; double get short_rad; double get diff_rad; double get dni; double get gti;
+ int get last_updated_epoch; String get last_updated; double get temp_c; double get temp_f; int get is_day; WeatherConditionModel get condition; double get wind_mph; double get wind_kph; int get wind_degree; String get wind_dir; double get pressure_mb; double get pressure_in; double get precip_mm; double get precip_in; int get humidity; int get cloud; double get feelslike_c; double get feelslike_f; double get windchill_c; double get windchill_f; double get heatindex_c; double get heatindex_f; double get dewpoint_c; double get dewpoint_f; double get vis_km; double get vis_miles; double get uv; double get gust_mph; double get gust_kph; double? get short_rad; double? get diff_rad; double? get dni; double? get gti;
 /// Create a copy of WeatherCurrentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $WeatherCurrentModelCopyWith<$Res>  {
   factory $WeatherCurrentModelCopyWith(WeatherCurrentModel value, $Res Function(WeatherCurrentModel) _then) = _$WeatherCurrentModelCopyWithImpl;
 @useResult
 $Res call({
- int last_updated_epoch, String last_updated, double temp_c, double temp_f, int is_day, WeatherConditionModel condition, double wind_mph, double wind_kph, int wind_degree, String wind_dir, double pressure_mb, double pressure_in, double precip_mm, double precip_in, int humidity, int cloud, double feelslike_c, double feelslike_f, double windchill_c, double windchill_f, double heatindex_c, double heatindex_f, double dewpoint_c, double dewpoint_f, double vis_km, double vis_miles, double uv, double gust_mph, double gust_kph, double short_rad, double diff_rad, double dni, double gti
+ int last_updated_epoch, String last_updated, double temp_c, double temp_f, int is_day, WeatherConditionModel condition, double wind_mph, double wind_kph, int wind_degree, String wind_dir, double pressure_mb, double pressure_in, double precip_mm, double precip_in, int humidity, int cloud, double feelslike_c, double feelslike_f, double windchill_c, double windchill_f, double heatindex_c, double heatindex_f, double dewpoint_c, double dewpoint_f, double vis_km, double vis_miles, double uv, double gust_mph, double gust_kph, double? short_rad, double? diff_rad, double? dni, double? gti
 });
 
 
@@ -65,7 +65,7 @@ class _$WeatherCurrentModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherCurrentModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? last_updated_epoch = null,Object? last_updated = null,Object? temp_c = null,Object? temp_f = null,Object? is_day = null,Object? condition = null,Object? wind_mph = null,Object? wind_kph = null,Object? wind_degree = null,Object? wind_dir = null,Object? pressure_mb = null,Object? pressure_in = null,Object? precip_mm = null,Object? precip_in = null,Object? humidity = null,Object? cloud = null,Object? feelslike_c = null,Object? feelslike_f = null,Object? windchill_c = null,Object? windchill_f = null,Object? heatindex_c = null,Object? heatindex_f = null,Object? dewpoint_c = null,Object? dewpoint_f = null,Object? vis_km = null,Object? vis_miles = null,Object? uv = null,Object? gust_mph = null,Object? gust_kph = null,Object? short_rad = null,Object? diff_rad = null,Object? dni = null,Object? gti = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? last_updated_epoch = null,Object? last_updated = null,Object? temp_c = null,Object? temp_f = null,Object? is_day = null,Object? condition = null,Object? wind_mph = null,Object? wind_kph = null,Object? wind_degree = null,Object? wind_dir = null,Object? pressure_mb = null,Object? pressure_in = null,Object? precip_mm = null,Object? precip_in = null,Object? humidity = null,Object? cloud = null,Object? feelslike_c = null,Object? feelslike_f = null,Object? windchill_c = null,Object? windchill_f = null,Object? heatindex_c = null,Object? heatindex_f = null,Object? dewpoint_c = null,Object? dewpoint_f = null,Object? vis_km = null,Object? vis_miles = null,Object? uv = null,Object? gust_mph = null,Object? gust_kph = null,Object? short_rad = freezed,Object? diff_rad = freezed,Object? dni = freezed,Object? gti = freezed,}) {
   return _then(_self.copyWith(
 last_updated_epoch: null == last_updated_epoch ? _self.last_updated_epoch : last_updated_epoch // ignore: cast_nullable_to_non_nullable
 as int,last_updated: null == last_updated ? _self.last_updated : last_updated // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ as double,vis_miles: null == vis_miles ? _self.vis_miles : vis_miles // ignore: 
 as double,uv: null == uv ? _self.uv : uv // ignore: cast_nullable_to_non_nullable
 as double,gust_mph: null == gust_mph ? _self.gust_mph : gust_mph // ignore: cast_nullable_to_non_nullable
 as double,gust_kph: null == gust_kph ? _self.gust_kph : gust_kph // ignore: cast_nullable_to_non_nullable
-as double,short_rad: null == short_rad ? _self.short_rad : short_rad // ignore: cast_nullable_to_non_nullable
-as double,diff_rad: null == diff_rad ? _self.diff_rad : diff_rad // ignore: cast_nullable_to_non_nullable
-as double,dni: null == dni ? _self.dni : dni // ignore: cast_nullable_to_non_nullable
-as double,gti: null == gti ? _self.gti : gti // ignore: cast_nullable_to_non_nullable
-as double,
+as double,short_rad: freezed == short_rad ? _self.short_rad : short_rad // ignore: cast_nullable_to_non_nullable
+as double?,diff_rad: freezed == diff_rad ? _self.diff_rad : diff_rad // ignore: cast_nullable_to_non_nullable
+as double?,dni: freezed == dni ? _self.dni : dni // ignore: cast_nullable_to_non_nullable
+as double?,gti: freezed == gti ? _self.gti : gti // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 /// Create a copy of WeatherCurrentModel
@@ -194,7 +194,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double short_rad,  double diff_rad,  double dni,  double gti)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double? short_rad,  double? diff_rad,  double? dni,  double? gti)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeatherCurrentModel() when $default != null:
 return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.temp_f,_that.is_day,_that.condition,_that.wind_mph,_that.wind_kph,_that.wind_degree,_that.wind_dir,_that.pressure_mb,_that.pressure_in,_that.precip_mm,_that.precip_in,_that.humidity,_that.cloud,_that.feelslike_c,_that.feelslike_f,_that.windchill_c,_that.windchill_f,_that.heatindex_c,_that.heatindex_f,_that.dewpoint_c,_that.dewpoint_f,_that.vis_km,_that.vis_miles,_that.uv,_that.gust_mph,_that.gust_kph,_that.short_rad,_that.diff_rad,_that.dni,_that.gti);case _:
@@ -215,7 +215,7 @@ return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double short_rad,  double diff_rad,  double dni,  double gti)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double? short_rad,  double? diff_rad,  double? dni,  double? gti)  $default,) {final _that = this;
 switch (_that) {
 case _WeatherCurrentModel():
 return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.temp_f,_that.is_day,_that.condition,_that.wind_mph,_that.wind_kph,_that.wind_degree,_that.wind_dir,_that.pressure_mb,_that.pressure_in,_that.precip_mm,_that.precip_in,_that.humidity,_that.cloud,_that.feelslike_c,_that.feelslike_f,_that.windchill_c,_that.windchill_f,_that.heatindex_c,_that.heatindex_f,_that.dewpoint_c,_that.dewpoint_f,_that.vis_km,_that.vis_miles,_that.uv,_that.gust_mph,_that.gust_kph,_that.short_rad,_that.diff_rad,_that.dni,_that.gti);case _:
@@ -235,7 +235,7 @@ return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double short_rad,  double diff_rad,  double dni,  double gti)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int last_updated_epoch,  String last_updated,  double temp_c,  double temp_f,  int is_day,  WeatherConditionModel condition,  double wind_mph,  double wind_kph,  int wind_degree,  String wind_dir,  double pressure_mb,  double pressure_in,  double precip_mm,  double precip_in,  int humidity,  int cloud,  double feelslike_c,  double feelslike_f,  double windchill_c,  double windchill_f,  double heatindex_c,  double heatindex_f,  double dewpoint_c,  double dewpoint_f,  double vis_km,  double vis_miles,  double uv,  double gust_mph,  double gust_kph,  double? short_rad,  double? diff_rad,  double? dni,  double? gti)?  $default,) {final _that = this;
 switch (_that) {
 case _WeatherCurrentModel() when $default != null:
 return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.temp_f,_that.is_day,_that.condition,_that.wind_mph,_that.wind_kph,_that.wind_degree,_that.wind_dir,_that.pressure_mb,_that.pressure_in,_that.precip_mm,_that.precip_in,_that.humidity,_that.cloud,_that.feelslike_c,_that.feelslike_f,_that.windchill_c,_that.windchill_f,_that.heatindex_c,_that.heatindex_f,_that.dewpoint_c,_that.dewpoint_f,_that.vis_km,_that.vis_miles,_that.uv,_that.gust_mph,_that.gust_kph,_that.short_rad,_that.diff_rad,_that.dni,_that.gti);case _:
@@ -250,7 +250,7 @@ return $default(_that.last_updated_epoch,_that.last_updated,_that.temp_c,_that.t
 @JsonSerializable()
 
 class _WeatherCurrentModel implements WeatherCurrentModel {
-  const _WeatherCurrentModel({required this.last_updated_epoch, required this.last_updated, required this.temp_c, required this.temp_f, required this.is_day, required this.condition, required this.wind_mph, required this.wind_kph, required this.wind_degree, required this.wind_dir, required this.pressure_mb, required this.pressure_in, required this.precip_mm, required this.precip_in, required this.humidity, required this.cloud, required this.feelslike_c, required this.feelslike_f, required this.windchill_c, required this.windchill_f, required this.heatindex_c, required this.heatindex_f, required this.dewpoint_c, required this.dewpoint_f, required this.vis_km, required this.vis_miles, required this.uv, required this.gust_mph, required this.gust_kph, required this.short_rad, required this.diff_rad, required this.dni, required this.gti});
+  const _WeatherCurrentModel({required this.last_updated_epoch, required this.last_updated, required this.temp_c, required this.temp_f, required this.is_day, required this.condition, required this.wind_mph, required this.wind_kph, required this.wind_degree, required this.wind_dir, required this.pressure_mb, required this.pressure_in, required this.precip_mm, required this.precip_in, required this.humidity, required this.cloud, required this.feelslike_c, required this.feelslike_f, required this.windchill_c, required this.windchill_f, required this.heatindex_c, required this.heatindex_f, required this.dewpoint_c, required this.dewpoint_f, required this.vis_km, required this.vis_miles, required this.uv, required this.gust_mph, required this.gust_kph, this.short_rad, this.diff_rad, this.dni, this.gti});
   factory _WeatherCurrentModel.fromJson(Map<String, dynamic> json) => _$WeatherCurrentModelFromJson(json);
 
 @override final  int last_updated_epoch;
@@ -282,10 +282,10 @@ class _WeatherCurrentModel implements WeatherCurrentModel {
 @override final  double uv;
 @override final  double gust_mph;
 @override final  double gust_kph;
-@override final  double short_rad;
-@override final  double diff_rad;
-@override final  double dni;
-@override final  double gti;
+@override final  double? short_rad;
+@override final  double? diff_rad;
+@override final  double? dni;
+@override final  double? gti;
 
 /// Create a copy of WeatherCurrentModel
 /// with the given fields replaced by the non-null parameter values.
@@ -320,7 +320,7 @@ abstract mixin class _$WeatherCurrentModelCopyWith<$Res> implements $WeatherCurr
   factory _$WeatherCurrentModelCopyWith(_WeatherCurrentModel value, $Res Function(_WeatherCurrentModel) _then) = __$WeatherCurrentModelCopyWithImpl;
 @override @useResult
 $Res call({
- int last_updated_epoch, String last_updated, double temp_c, double temp_f, int is_day, WeatherConditionModel condition, double wind_mph, double wind_kph, int wind_degree, String wind_dir, double pressure_mb, double pressure_in, double precip_mm, double precip_in, int humidity, int cloud, double feelslike_c, double feelslike_f, double windchill_c, double windchill_f, double heatindex_c, double heatindex_f, double dewpoint_c, double dewpoint_f, double vis_km, double vis_miles, double uv, double gust_mph, double gust_kph, double short_rad, double diff_rad, double dni, double gti
+ int last_updated_epoch, String last_updated, double temp_c, double temp_f, int is_day, WeatherConditionModel condition, double wind_mph, double wind_kph, int wind_degree, String wind_dir, double pressure_mb, double pressure_in, double precip_mm, double precip_in, int humidity, int cloud, double feelslike_c, double feelslike_f, double windchill_c, double windchill_f, double heatindex_c, double heatindex_f, double dewpoint_c, double dewpoint_f, double vis_km, double vis_miles, double uv, double gust_mph, double gust_kph, double? short_rad, double? diff_rad, double? dni, double? gti
 });
 
 
@@ -337,7 +337,7 @@ class __$WeatherCurrentModelCopyWithImpl<$Res>
 
 /// Create a copy of WeatherCurrentModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? last_updated_epoch = null,Object? last_updated = null,Object? temp_c = null,Object? temp_f = null,Object? is_day = null,Object? condition = null,Object? wind_mph = null,Object? wind_kph = null,Object? wind_degree = null,Object? wind_dir = null,Object? pressure_mb = null,Object? pressure_in = null,Object? precip_mm = null,Object? precip_in = null,Object? humidity = null,Object? cloud = null,Object? feelslike_c = null,Object? feelslike_f = null,Object? windchill_c = null,Object? windchill_f = null,Object? heatindex_c = null,Object? heatindex_f = null,Object? dewpoint_c = null,Object? dewpoint_f = null,Object? vis_km = null,Object? vis_miles = null,Object? uv = null,Object? gust_mph = null,Object? gust_kph = null,Object? short_rad = null,Object? diff_rad = null,Object? dni = null,Object? gti = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? last_updated_epoch = null,Object? last_updated = null,Object? temp_c = null,Object? temp_f = null,Object? is_day = null,Object? condition = null,Object? wind_mph = null,Object? wind_kph = null,Object? wind_degree = null,Object? wind_dir = null,Object? pressure_mb = null,Object? pressure_in = null,Object? precip_mm = null,Object? precip_in = null,Object? humidity = null,Object? cloud = null,Object? feelslike_c = null,Object? feelslike_f = null,Object? windchill_c = null,Object? windchill_f = null,Object? heatindex_c = null,Object? heatindex_f = null,Object? dewpoint_c = null,Object? dewpoint_f = null,Object? vis_km = null,Object? vis_miles = null,Object? uv = null,Object? gust_mph = null,Object? gust_kph = null,Object? short_rad = freezed,Object? diff_rad = freezed,Object? dni = freezed,Object? gti = freezed,}) {
   return _then(_WeatherCurrentModel(
 last_updated_epoch: null == last_updated_epoch ? _self.last_updated_epoch : last_updated_epoch // ignore: cast_nullable_to_non_nullable
 as int,last_updated: null == last_updated ? _self.last_updated : last_updated // ignore: cast_nullable_to_non_nullable
@@ -368,11 +368,11 @@ as double,vis_miles: null == vis_miles ? _self.vis_miles : vis_miles // ignore: 
 as double,uv: null == uv ? _self.uv : uv // ignore: cast_nullable_to_non_nullable
 as double,gust_mph: null == gust_mph ? _self.gust_mph : gust_mph // ignore: cast_nullable_to_non_nullable
 as double,gust_kph: null == gust_kph ? _self.gust_kph : gust_kph // ignore: cast_nullable_to_non_nullable
-as double,short_rad: null == short_rad ? _self.short_rad : short_rad // ignore: cast_nullable_to_non_nullable
-as double,diff_rad: null == diff_rad ? _self.diff_rad : diff_rad // ignore: cast_nullable_to_non_nullable
-as double,dni: null == dni ? _self.dni : dni // ignore: cast_nullable_to_non_nullable
-as double,gti: null == gti ? _self.gti : gti // ignore: cast_nullable_to_non_nullable
-as double,
+as double,short_rad: freezed == short_rad ? _self.short_rad : short_rad // ignore: cast_nullable_to_non_nullable
+as double?,diff_rad: freezed == diff_rad ? _self.diff_rad : diff_rad // ignore: cast_nullable_to_non_nullable
+as double?,dni: freezed == dni ? _self.dni : dni // ignore: cast_nullable_to_non_nullable
+as double?,gti: freezed == gti ? _self.gti : gti // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 

@@ -39,10 +39,10 @@ _WeatherCurrentModel _$WeatherCurrentModelFromJson(Map<String, dynamic> json) =>
       uv: (json['uv'] as num).toDouble(),
       gust_mph: (json['gust_mph'] as num).toDouble(),
       gust_kph: (json['gust_kph'] as num).toDouble(),
-      short_rad: (json['short_rad'] as num).toDouble(),
-      diff_rad: (json['diff_rad'] as num).toDouble(),
-      dni: (json['dni'] as num).toDouble(),
-      gti: (json['gti'] as num).toDouble(),
+      short_rad: (json['short_rad'] as num?)?.toDouble(),
+      diff_rad: (json['diff_rad'] as num?)?.toDouble(),
+      dni: (json['dni'] as num?)?.toDouble(),
+      gti: (json['gti'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$WeatherCurrentModelToJson(

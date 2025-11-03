@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
-import 'package:weather_app/core/constants/api_constants.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
-import 'package:weather_app/data/models/weather_response_model.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
+import 'package:weather_app/presentation/blocs/weather_bloc.dart';
+import 'package:weather_app/presentation/blocs/weather_event.dart';
+import 'package:weather_app/presentation/blocs/weather_state.dart';
 import 'package:weather_app/presentation/widgets/drawer_list.dart';
 import 'package:weather_app/presentation/widgets/weather_card.dart';
 
@@ -24,55 +25,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomeScreen> {
-  WeatherResponseModel? _weather;
   WeatherAlertListModel? _alertList;
-
-  bool _loading = true;
-
-  Future<void> fetchWeatherData() async {
-    final dio = Dio();
-    try {
-      final response = await dio.get(
-        ApiConstants.weather(widget.latitude, widget.longitude),
-      );
-
-      debugPrint('Response status: ${response.statusCode}');
-      debugPrint('response data{$response}');
-      if (response.statusCode == 200) {
-        try {
-          final weather = WeatherResponseModel.fromJson(response.data);
-          // Create a default empty alert list
-          // final alertListModel = WeatherAlertListModel(alert: []);
-
-          setState(() {
-            _weather = weather;
-            // _alertList = alertListModel;
-
-            _loading = false;
-          });
-        } catch (e) {
-          debugPrint('Error parsing data: $e');
-          setState(() {
-            _loading = false;
-          });
-        }
-      } else {
-        setState(() {
-          _loading = false;
-        });
-      }
-    } catch (ex) {
-      debugPrint("exception: $ex");
-      setState(() {
-        _loading = false;
-      });
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    fetchWeatherData();
+    // Fetch weather data when screen loads
+    context.read<WeatherBloc>().add(
+      FetchWeatherForCurrentLocation(
+        latitude: widget.latitude,
+        longitude: widget.longitude,
+      ),
+    );
   }
 
   @override
@@ -125,18 +89,61 @@ class _HomePageScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          body: _loading
-              ? const Center(child: CircularProgressIndicator())
-              : _weather == null
-              ? const Center(child: Text('Failed to load weather data'))
-              : SafeArea(
+          body: BlocBuilder<WeatherBloc, WeatherState>(
+            builder: (context, state) {
+              if (state is WeatherLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (state is WeatherError) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.error_outline,
+                        size: 48,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Failed to load weather data',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        state.message,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          context.read<WeatherBloc>().add(
+                            FetchWeatherForCurrentLocation(
+                              latitude: widget.latitude,
+                              longitude: widget.longitude,
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.refresh),
+                        label: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              if (state is WeatherLoaded) {
+                final weather = state.weather;
+                return SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.network(
-                          'https:${_weather!.current.condition.icon}',
+                          'https:${weather.current.condition.icon}',
                           scale: 0.5,
                           alignment: AlignmentGeometry.topCenter,
                         ),
@@ -144,13 +151,12 @@ class _HomePageScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              '${_weather!.current.temp_c.toStringAsFixed(1)}°C',
+                              '${weather.current.temp_c.toStringAsFixed(1)}°C',
                               style: const TextStyle(fontSize: 48),
                               textAlign: TextAlign.center,
                             ),
-
                             Text(
-                              _weather!.location.name,
+                              weather.location.name,
                               style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -158,16 +164,14 @@ class _HomePageScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: 8),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.cloud, size: 20),
                             const SizedBox(width: 5),
                             Text(
-                              'Its ${_weather!.current.condition.text}',
+                              'Its ${weather.current.condition.text}',
                               style: const TextStyle(
                                 fontSize: 20,
                                 color: ColorConstants.backGroundColor,
@@ -180,19 +184,18 @@ class _HomePageScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'UV: ${_weather!.current.uv}',
-                              //Todo: make consistent across all the app
+                              'UV: ${weather.current.uv}',
                               style: Theme.of(
                                 context,
                               ).textTheme.titleSmall?.copyWith(),
                             ),
                             const SizedBox(width: 10),
                             Text(
-                              'WIND: ${_weather!.current.wind_mph}',
+                              'WIND: ${weather.current.wind_mph}',
                               style: const TextStyle(fontSize: 20),
                             ),
                             Text(
-                              _weather!.current.wind_dir,
+                              weather.current.wind_dir,
                               style: const TextStyle(fontSize: 20),
                             ),
                             const SizedBox(width: 10),
@@ -200,11 +203,17 @@ class _HomePageScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 30),
                         Image.asset(AssetsConstants.housePageImage),
-                        WeatherCard(forecast: _weather!.forecast),
+                        WeatherCard(forecast: weather.forecast),
                       ],
                     ),
                   ),
-                ),
+                );
+              }
+
+              // Initial state
+              return const Center(child: Text('Loading weather data...'));
+            },
+          ),
         ),
       ],
     );
