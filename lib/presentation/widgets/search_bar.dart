@@ -4,10 +4,7 @@ import '../../service/fetch_places.dart';
 class SearchBarWidget extends StatefulWidget {
   final void Function(double lat, double lon, String name) onPlaceSelected;
 
-  const SearchBarWidget({
-    super.key,
-    required this.onPlaceSelected,
-  });
+  const SearchBarWidget({super.key, required this.onPlaceSelected});
 
   @override
   State<SearchBarWidget> createState() => _SearchBarWidgetState();
@@ -23,10 +20,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           SearchAnchor.bar(
             scrollPadding: const EdgeInsets.all(20),
             isFullScreen: false,
-            barBackgroundColor: MaterialStateProperty.all<Color>(
+            barBackgroundColor: WidgetStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),
             ),
-            barOverlayColor: MaterialStateProperty.all<Color>(
+            barOverlayColor: WidgetStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),
             ),
             barHintText: 'Search city',
@@ -49,7 +46,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
                     // Call the callback - Cubit will handle saving
                     widget.onPlaceSelected(
-                        place.latitude, place.longitude, place.name);
+                      place.latitude,
+                      place.longitude,
+                      place.name,
+                    );
                   },
                 );
               }).toList();
