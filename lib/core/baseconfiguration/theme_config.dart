@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  ///for light theme
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -33,13 +34,13 @@ class AppTheme {
       bodyLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.white70),
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      
-      titleSmall:TextStyle(fontSize:20, color:Colors.white)
+
+      titleSmall: TextStyle(fontSize: 20, color: Colors.white),
     ),
     // Icon theme
     iconTheme: const IconThemeData(color: Colors.white),
   );
-
+  //for dark theme
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
