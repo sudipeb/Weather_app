@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/data/models/forecast_model.dart';
 
+/// A horizontal card list that displays the weather forecast for multiple days.
+///
+/// Uses [ForecastModel] to build each card with date, temperature, weather icon,
+/// sunrise time, and UV index.
+
 class WeatherCard extends StatelessWidget {
   const WeatherCard({super.key, required this.forecast});
   final ForecastModel forecast;
@@ -15,7 +20,7 @@ class WeatherCard extends StatelessWidget {
         itemBuilder: (context, index) {
           final day = forecast.forecastday[index];
           return Card(
-            color: Colors.white.withOpacity(0.2),
+            color: Colors.white.withValues(alpha: 0.2),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
