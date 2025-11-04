@@ -5,6 +5,8 @@ import 'package:weather_app/data/repositories/weather_repository.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 import 'package:weather_app/domain/repositories/i_search_history_repository.dart';
 
+/// The singleton instance of [GetIt] used for dependency injection.
+
 final getIt = GetIt.instance;
 
 /// Setup all dependencies
@@ -17,6 +19,6 @@ Future<void> setupDependencies() async {
     () => SearchHistoryRepository(searchHistoryBox),
   );
 
-  // Register WeatherRepository
+  /// [WeatherRepository] provides methods to fetch weather data from API.
   getIt.registerLazySingleton<WeatherRepository>(() => WeatherRepository());
 }
