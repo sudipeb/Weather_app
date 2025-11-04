@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
 
+/// Onboarding screen for "Rainy Day"
+///
+/// Displays an image background and informative text overlay
 class RainyDay extends StatelessWidget {
   const RainyDay({super.key});
 
   @override
   Widget build(context) {
-    //returns an container
     return Stack(
       fit: StackFit.expand,
-
-      // Center children vertically
       children: [
         Image.asset(AssetsConstants.onboardingIcon, fit: BoxFit.fill),
-        // Adds vertical spacing between image and text(optional)
         SizedBox(height: 10),
-
-        // Displays a heading text with custom styling
         Positioned(
           top: 450,
           left: 5,

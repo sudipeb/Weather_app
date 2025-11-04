@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
 
+/// Onboarding screen for "Sunny Day"
+///
+/// Displays an image background and informative text overlay
 class SunnyDay extends StatelessWidget {
   const SunnyDay({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand, // Fill the whole parent space (PageView page)
+      fit: StackFit.expand, 
       children: [
-        // Image fills entire page
+        
         Image.asset(
           AssetsConstants.onboardingImage,
-          fit: BoxFit.cover, // cover entire area without distortion
+          fit: BoxFit.cover, 
         ),
 
         Positioned(
