@@ -8,6 +8,9 @@ import 'package:weather_app/presentation/cubit/search_history_cubit.dart';
 import 'package:weather_app/presentation/widgets/search_bar.dart';
 import '../../domain/repositories/i_search_history_repository.dart';
 
+/// Main screen to search and select locations
+/// Uses a [SearchBarWidget] and shows recent searches from Hive storage
+/// Navigates to the [HomeScreen] with the selected place's coordinates
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
