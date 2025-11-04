@@ -2,12 +2,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../domain/entity/searchbar/place_details.dart';
 import '../../domain/repositories/i_search_history_repository.dart';
 
-/// Hive implementation of the search history repository.
+/// Hive-based implementation of [ISearchHistoryRepository].
+///
+/// persists search history locally using Hive, allowing
+/// adding, deleting, clearing, and retrieving searched places.
 class SearchHistoryRepository implements ISearchHistoryRepository {
   final Box<Place> _box;
 
   SearchHistoryRepository(this._box);
 
+  /// Adds a new [search] item to the history.
   @override
   Future<void> addSearch(Place search) async {
     final exists = _box.values.any(
@@ -18,12 +22,15 @@ class SearchHistoryRepository implements ISearchHistoryRepository {
     }
   }
 
+  /// Returns all search history items in reverse order
   @override
   List<Place> getHistory() => _box.values.toList().reversed.toList();
 
+  /// Clears all search history from Hive.
   @override
   Future<void> clearHistory() async => await _box.clear();
 
+  /// Deletes a specific search item by [name].
   @override
   Future<void> deleteItem(String name) async {
     for (var key in _box.keys) {
