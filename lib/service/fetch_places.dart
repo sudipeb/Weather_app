@@ -4,6 +4,11 @@ import 'package:weather_app/data/models/place_model.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 import 'package:weather_app/domain/exceptions/place_search_exception.dart';
 
+/// Fetches a list of place suggestions for a given [query].
+///
+/// Uses the external API defined in [ApiConstants.cityInfo] and returns a
+/// list of [Place] objects. This function throws a [PlaceServiceException]
+/// if the request fails or the response is invalid.
 Future<List<Place>> fetchPlaceSuggestions(String query) async {
   if (query.isEmpty) return [];
 
@@ -18,7 +23,7 @@ Future<List<Place>> fetchPlaceSuggestions(String query) async {
     if (response.data is! List) {
       throw PlaceServiceException("Unexpected API response format");
     }
-
+    // Map API JSON -> [PlaceModel] -> [Place] and return as List<Place>
     return (response.data as List)
         .map((json) => PlaceModel.fromJson(json as Map<String, dynamic>))
         .toList();
