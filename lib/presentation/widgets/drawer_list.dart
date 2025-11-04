@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -15,19 +16,25 @@ class DrawerList extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        const DrawerHeader(
+        DrawerHeader(
           decoration: BoxDecoration(color: Color.fromARGB(255, 71, 51, 91)),
           curve: Curves.slowMiddle,
           padding: EdgeInsetsDirectional.only(top: 50, start: 50),
           child: Text(
             'Weather App',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: SizeConfig.heading4,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: const Icon(Icons.search),
-          title: const Text('Search For Location'),
+          title: Text(
+            'Search For Location',
+            style: TextStyle(fontSize: SizeConfig.heading4),
+          ),
           onTap: () {
             context.router.push(const SettingsRoute());
           },
@@ -35,19 +42,28 @@ class DrawerList extends StatelessWidget {
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.rule),
-          title: const Text('Terms And Condition'),
+          title: Text(
+            'Terms And Condition',
+            style: TextStyle(fontSize: SizeConfig.heading4),
+          ),
           onTap: () {},
         ),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.person),
-          title: const Text('User Profile'),
+          title: Text(
+            'User Profile',
+            style: TextStyle(fontSize: SizeConfig.heading4),
+          ),
           onTap: () {},
         ),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: const Icon(Icons.settings),
-          title: const Text('About App'),
+          title: Text(
+            'About App',
+            style: TextStyle(fontSize: SizeConfig.heading4),
+          ),
           onTap: () {},
         ),
 

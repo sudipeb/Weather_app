@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 import 'package:weather_app/presentation/blocs/weather_event.dart';
@@ -41,6 +42,7 @@ class _HomePageScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Stack(
       children: [
         Container(
@@ -54,7 +56,7 @@ class _HomePageScreenState extends State<HomeScreen> {
             centerTitle: true,
             title: const Text(
               'Weather App',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: ColorConstants.backGroundColor),
             ),
 
             actions: [
@@ -152,13 +154,15 @@ class _HomePageScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               '${weather.current.temp_c.toStringAsFixed(1)}°C',
-                              style: const TextStyle(fontSize: 48),
+                              style: TextStyle(
+                                fontSize: SizeConfig.extraLargeheading1,
+                              ),
                               textAlign: TextAlign.center,
                             ),
                             Text(
                               weather.location.name,
-                              style: const TextStyle(
-                                fontSize: 28,
+                              style: TextStyle(
+                                fontSize: SizeConfig.heading2,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -172,8 +176,8 @@ class _HomePageScreenState extends State<HomeScreen> {
                             const SizedBox(width: 5),
                             Text(
                               'Its ${weather.current.condition.text}',
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: SizeConfig.heading3,
                                 color: ColorConstants.backGroundColor,
                               ),
                             ),
@@ -185,9 +189,10 @@ class _HomePageScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               'UV: ${weather.current.uv}',
-                              style: Theme.of(
-                                context,
-                              ).textTheme.titleSmall?.copyWith(),
+                              style: TextStyle(
+                                fontSize: SizeConfig.heading3,
+                                color: ColorConstants.backGroundColor,
+                              ),
                             ),
                             const SizedBox(width: 10),
                             Text(
@@ -196,7 +201,7 @@ class _HomePageScreenState extends State<HomeScreen> {
                             ),
                             Text(
                               weather.current.wind_dir,
-                              style: const TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: SizeConfig.heading3),
                             ),
                             const SizedBox(width: 10),
                           ],

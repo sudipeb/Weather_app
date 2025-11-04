@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../service/cityservice/fetch_places.dart';
+import 'package:weather_app/service/location/fetch_places.dart';
 
 /// A search bar widget that allows users to search for cities and select a location.
 ///

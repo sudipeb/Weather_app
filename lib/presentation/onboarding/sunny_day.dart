@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
 /// Onboarding screen for "Sunny Day"
 ///
@@ -10,13 +11,9 @@ class SunnyDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand, 
+      fit: StackFit.expand,
       children: [
-        
-        Image.asset(
-          AssetsConstants.onboardingImage,
-          fit: BoxFit.cover, 
-        ),
+        Image.asset(AssetsConstants.onboardingImage, fit: BoxFit.cover),
 
         Positioned(
           top: 450,
@@ -30,7 +27,7 @@ class SunnyDay extends StatelessWidget {
                 'Welcome to SunTrack!',
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 34,
+                  fontSize: SizeConfig.heading1,
                   foreground: Paint()
                     ..shader = LinearGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],

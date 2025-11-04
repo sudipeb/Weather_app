@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
 /// Onboarding screen for "Snowy Day"
 ///
@@ -26,7 +27,7 @@ class SnowyDay extends StatelessWidget {
                 'Let the Sun Shine!',
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: SizeConfig.heading1,
                   foreground: Paint()
                     ..shader = LinearGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],

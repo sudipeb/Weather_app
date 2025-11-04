@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/data/models/forecast_model.dart';
 
 /// A horizontal card list that displays the weather forecast for multiple days.
@@ -20,7 +22,7 @@ class WeatherCard extends StatelessWidget {
         itemBuilder: (context, index) {
           final day = forecast.forecastday[index];
           return Card(
-            color: Colors.white.withValues(alpha: 0.2),
+            color: ColorConstants.backGroundColor.withValues(alpha: 0.2),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -28,7 +30,10 @@ class WeatherCard extends StatelessWidget {
                 children: [
                   Text(
                     "${day.date.split('-')[2]}/${day.date.split('-')[1]}", // "17-10"
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: SizeConfig.heading4,
+                      color: ColorConstants.backGroundColor,
+                    ),
                   ),
                   Image.network(
                     'https:${day.day.condition.icon}',
@@ -37,24 +42,36 @@ class WeatherCard extends StatelessWidget {
                   ),
                   Text(
                     '${day.day.avgtemp_c.round()}°C',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: SizeConfig.heading4,
+                      color: ColorConstants.backGroundColor,
+                    ),
                   ),
                   Column(
                     children: [
                       Text(
                         'Sunrise',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: SizeConfig.heading5,
+                          color: ColorConstants.backGroundColor,
+                        ),
                       ),
                       Text(
                         day.astro.sunrise,
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        style: TextStyle(
+                          fontSize: SizeConfig.heading5,
+                          color: ColorConstants.backGroundColor,
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 5),
                   Text(
                     'UV ${day.day.uv}',
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: SizeConfig.heading5,
+                      color: ColorConstants.backGroundColor,
+                    ),
                   ),
                 ],
               ),

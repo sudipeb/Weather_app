@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/core/dependencyInjection/injection.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 import 'package:weather_app/presentation/cubit/search_history_cubit.dart';
 import 'package:weather_app/presentation/widgets/search_bar.dart';
@@ -61,7 +63,7 @@ class _SettingsScreenBody extends StatelessWidget {
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       // Header
-                      return const Padding(
+                      return Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 8,
@@ -69,7 +71,7 @@ class _SettingsScreenBody extends StatelessWidget {
                         child: Text(
                           'Recent Searches',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: SizeConfig.heading3,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -88,7 +90,10 @@ class _SettingsScreenBody extends StatelessWidget {
                         color: Colors.red,
                         alignment: Alignment.centerRight,
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: const Icon(Icons.delete, color: Colors.white),
+                        child: const Icon(
+                          Icons.delete,
+                          color: ColorConstants.backGroundColor,
+                        ),
                       ),
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 16),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/constants/app_constants.dart';
 
 class AppTheme {
   ///for light theme
@@ -22,23 +23,29 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: ColorConstants.backGroundColor),
       titleTextStyle: TextStyle(
-        color: Colors.white,
+        color: ColorConstants.backGroundColor,
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
     ),
     // Text theme
     textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white70),
-      titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: ColorConstants.backGroundColor),
+      bodyMedium: TextStyle(color: ColorConstants.backGroundColor),
+      titleLarge: TextStyle(
+        color: ColorConstants.backGroundColor,
+        fontWeight: FontWeight.bold,
+      ),
 
-      titleSmall: TextStyle(fontSize: 20, color: Colors.white),
+      titleSmall: TextStyle(
+        fontSize: 20,
+        color: ColorConstants.backGroundColor,
+      ),
     ),
     // Icon theme
-    iconTheme: const IconThemeData(color: Colors.white),
+    iconTheme: const IconThemeData(color: ColorConstants.backGroundColor),
   );
   //for dark theme
   static ThemeData darkTheme = ThemeData(
@@ -61,21 +68,24 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: ColorConstants.backGroundColor),
       titleTextStyle: TextStyle(
-        color: Colors.white,
+        color: ColorConstants.backGroundColor,
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
     ),
     // Text theme
     textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white70),
-      titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      bodyLarge: TextStyle(color: ColorConstants.backGroundColor),
+      bodyMedium: TextStyle(color: ColorConstants.backGroundColor),
+      titleLarge: TextStyle(
+        color: ColorConstants.backGroundColor,
+        fontWeight: FontWeight.bold,
+      ),
     ),
     // Icon theme
-    iconTheme: const IconThemeData(color: Colors.white),
+    iconTheme: const IconThemeData(color: ColorConstants.backGroundColor),
   );
 
   // Gradient colors

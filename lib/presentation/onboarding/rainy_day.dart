@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
 /// Onboarding screen for "Rainy Day"
 ///
@@ -26,7 +27,7 @@ class RainyDay extends StatelessWidget {
                 'Ahead of the Weather',
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 34,
+                  fontSize: SizeConfig.heading1,
                   foreground: Paint()
                     ..shader = LinearGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],
