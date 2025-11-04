@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
 class SizeConstants {
-  static const double heading1 = 34; // e.g., HomeScreen temperature
-  static const double heading2 = 28; // e.g., Location name
+  static double heading1 = SizeConfig.fontSize(
+    34,
+  ); // e.g., HomeScreen temperature
+  static double heading2 = SizeConfig.fontSize(28); // e.g., Location name
   static const double heading3 = 24; // Card headings
   static const double bodyLarge = 20; // descriptive text, UV/Wind
   static const double bodyMedium = 16; // subtitles
