@@ -10,6 +10,7 @@ import 'package:weather_app/core/baseconfiguration/theme_config.dart';
 import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
 import 'package:weather_app/core/dependencyInjection/injection.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/data/datasource/location_search_adapters.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
 
@@ -34,6 +35,7 @@ void main() async {
   if (!isFirstLaunch) {
     position = await AppStartup.getCurrentLocation();
   }
+
   await setupDependencies();
   runApp(
     MultiProvider(

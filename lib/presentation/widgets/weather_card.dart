@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/constants/app_spacing.dart';
 import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/data/models/forecast_model.dart';
 
@@ -65,7 +66,7 @@ class WeatherCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: AppSpacing.medium),
                   Text(
                     'UV ${day.day.uv}',
                     style: TextStyle(

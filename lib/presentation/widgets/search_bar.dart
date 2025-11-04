@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/constants/app_spacing.dart';
 import 'package:weather_app/service/location/fetch_places.dart';
 
 /// A search bar widget that allows users to search for cities and select a location.
@@ -19,7 +20,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     return SafeArea(
       child: Column(
         children: [
-          const SizedBox(height: 5),
+          SizedBox(height: AppSpacing.medium),
           SearchAnchor.bar(
             scrollPadding: const EdgeInsets.all(20),
             isFullScreen: false,

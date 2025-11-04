@@ -48,7 +48,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _initLocation() async {
     final pos = await AppStartup.getCurrentLocation();
-    print(pos);
     setState(() {
       position = pos;
     });
@@ -56,6 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Stack(
         children: [

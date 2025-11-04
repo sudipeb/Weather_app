@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/constants/app_spacing.dart';
 import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/data/models/weatheralert_list_model.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
@@ -107,18 +108,18 @@ class _HomePageScreenState extends State<HomeScreen> {
                         size: 48,
                         color: Colors.red,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: AppSpacing.large),
                       Text(
                         'Failed to load weather data',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: AppSpacing.average),
                       Text(
                         state.message,
                         style: Theme.of(context).textTheme.bodyMedium,
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: AppSpacing.large),
                       ElevatedButton.icon(
                         onPressed: () {
                           context.read<WeatherBloc>().add(
@@ -168,12 +169,12 @@ class _HomePageScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: AppSpacing.average),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.cloud, size: 20),
-                            const SizedBox(width: 5),
+                            SizedBox(height: AppSpacing.medium),
                             Text(
                               'Its ${weather.current.condition.text}',
                               style: TextStyle(
@@ -183,7 +184,7 @@ class _HomePageScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: AppSpacing.extralarge),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -194,7 +195,7 @@ class _HomePageScreenState extends State<HomeScreen> {
                                 color: ColorConstants.backGroundColor,
                               ),
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(height: AppSpacing.average),
                             Text(
                               'WIND: ${weather.current.wind_mph}',
                               style: const TextStyle(fontSize: 20),
@@ -203,10 +204,10 @@ class _HomePageScreenState extends State<HomeScreen> {
                               weather.current.wind_dir,
                               style: TextStyle(fontSize: SizeConfig.heading3),
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(height: AppSpacing.average),
                           ],
                         ),
-                        const SizedBox(height: 30),
+                        SizedBox(height: AppSpacing.doubleextralarge),
                         Image.asset(AssetsConstants.housePageImage),
                         WeatherCard(forecast: weather.forecast),
                       ],

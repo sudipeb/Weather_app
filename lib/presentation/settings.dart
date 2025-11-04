@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/constants/app_spacing.dart';
 import 'package:weather_app/core/dependencyInjection/injection.dart';
 import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/domain/entity/searchbar/place_details.dart';
@@ -26,7 +27,7 @@ class SettingsScreen extends StatelessWidget {
 }
 
 class _SettingsScreenBody extends StatelessWidget {
-  const _SettingsScreenBody({super.key});
+  const _SettingsScreenBody();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,8 @@ class _SettingsScreenBody extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   itemCount: history.length + 1, // +1 for header
-                  separatorBuilder: (_, __) => const SizedBox(height: 6),
+                  separatorBuilder: (_, __) =>
+                      SizedBox(height: AppSpacing.medium),
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       // Header
