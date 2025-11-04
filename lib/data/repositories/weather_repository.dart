@@ -6,6 +6,8 @@ import 'package:weather_app/data/models/weather_response_model.dart';
 class WeatherRepository {
   final Dio _dio;
 
+  /// Creates a [WeatherRepository] with an optional [Dio] instance.
+  /// If no Dio instance is provided, a new one is created internally.
   WeatherRepository({Dio? dio}) : _dio = dio ?? Dio();
 
   /// Fetches weather data for the given coordinates
