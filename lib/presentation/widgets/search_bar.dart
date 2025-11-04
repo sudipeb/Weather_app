@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../service/fetch_places.dart';
 
+/// A search bar widget that allows users to search for cities and select a location.
+///
+/// This widget uses [SearchAnchor.bar] to show suggestions in a dropdown-like overlay.
 class SearchBarWidget extends StatefulWidget {
   final void Function(double lat, double lon, String name) onPlaceSelected;
 
@@ -26,6 +29,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             barOverlayColor: WidgetStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),
             ),
+
+            /// Suggestions builder that returns a list of widgets
+            ///
+            /// Uses [fetchPlaceSuggestions] from the service layer.
             barHintText: 'Search city',
             suggestionsBuilder: (context, controller) async {
               if (controller.text.isEmpty) {
