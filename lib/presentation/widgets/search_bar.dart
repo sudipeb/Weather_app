@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../service/fetch_places.dart';
+import 'package:weather_app/core/constants/app_spacing.dart';
+import 'package:weather_app/service/location/fetch_places.dart';
 
+/// A search bar widget that allows users to search for cities and select a location.
+///
+/// This widget uses [SearchAnchor.bar] to show suggestions in a dropdown-like overlay.
 class SearchBarWidget extends StatefulWidget {
-  final Function(double lat, double lon) onPlaceSelected;
+  final void Function(double lat, double lon, String name) onPlaceSelected;
+
   const SearchBarWidget({super.key, required this.onPlaceSelected});
 
   @override
@@ -15,18 +20,20 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 5),
-
-          SizedBox(height: 20),
+          SizedBox(height: AppSpacing.medium),
           SearchAnchor.bar(
-            scrollPadding: EdgeInsets.all(20),
+            scrollPadding: const EdgeInsets.all(20),
             isFullScreen: false,
-            barBackgroundColor: MaterialStateProperty.all<Color>(
+            barBackgroundColor: WidgetStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),
             ),
-            barOverlayColor: MaterialStateProperty.all<Color>(
+            barOverlayColor: WidgetStateProperty.all<Color>(
               const Color.fromARGB(255, 135, 201, 137),
             ),
+
+            /// Suggestions builder that returns a list of widgets
+            ///
+            /// Uses [fetchPlaceSuggestions] from the service layer.
             barHintText: 'Search city',
             suggestionsBuilder: (context, controller) async {
               if (controller.text.isEmpty) {
@@ -45,8 +52,12 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                     // Close the search bar and keep text
                     controller.closeView(place.name);
 
-                    // Call the callback - BlocListener will handle navigation
-                    widget.onPlaceSelected(place.latitude, place.longitude);
+                    // Call the callback - Cubit will handle saving
+                    widget.onPlaceSelected(
+                      place.latitude,
+                      place.longitude,
+                      place.name,
+                    );
                   },
                 );
               }).toList();

@@ -4,13 +4,20 @@ import 'package:geolocator/geolocator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
 
+/// Utility class for app startup-related tasks such as
+/// onboarding checks and obtaining device location.
+
 class AppStartup {
   static final LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
   );
 
-  /// Check if this is the first launch
+  // Checks if this is the first launch of the app.
+  ///
+  /// Uses [SharedPreferences] to read the boolean stored
+  /// under [AppConstants.firstLaunchKey].
+
   static Future<bool> isFirstLaunch() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(AppConstants.firstLaunchKey) ?? true;

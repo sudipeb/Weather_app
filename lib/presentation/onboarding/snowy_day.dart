@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 
+/// Onboarding screen for "Snowy Day"
+///
+/// Displays an image background and informative text overlay
 class SnowyDay extends StatelessWidget {
   const SnowyDay({super.key});
 
   @override
   Widget build(context) {
-    //returns an container with stack structure
     return Stack(
       fit: StackFit.expand,
-      // Center children vertically
       children: [
         Image.asset(AssetsConstants.homeSvg, fit: BoxFit.cover),
-
-        // Adds vertical spacing between image and text(optional)
         SizedBox(height: 10),
-
-        // Displays a heading text with custom styling
         Positioned(
           top: 600,
           left: 5,
           right: 5,
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
 
             child: ListTile(
@@ -29,7 +27,7 @@ class SnowyDay extends StatelessWidget {
                 'Let the Sun Shine!',
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: SizeConfig.heading1,
                   foreground: Paint()
                     ..shader = LinearGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],

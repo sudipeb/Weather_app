@@ -8,17 +8,25 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/baseconfiguration/theme_config.dart';
 import 'package:weather_app/core/baseconfiguration/theme_notifier.dart';
+import 'package:weather_app/core/dependencyInjection/injection.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
+import 'package:weather_app/data/datasource/location_search_adapters.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
+
+import 'package:weather_app/domain/entity/searchbar/place_details.dart';
 import 'package:weather_app/presentation/blocs/weather_bloc.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Initialize the hive app flutter
-  // await Hive.initFlutter();
-  // Open the Hive box to store items
-  // await Hive.openBox(StringConstants.hiveBox);
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(LocationSearchAdapter());
+
+  await Hive.openBox<Place>('searchHistory');
+
   await dotenv.load(fileName: ".env");
 
   final isFirstLaunch = await AppStartup.isFirstLaunch();
@@ -28,13 +36,14 @@ void main() async {
     position = await AppStartup.getCurrentLocation();
   }
 
+  await setupDependencies();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeNotifier()),
         BlocProvider(
-          create: (context) =>
-              WeatherBloc(weatherRepository: WeatherRepository()),
+          create: (_) =>
+              WeatherBloc(weatherRepository: getIt<WeatherRepository>()),
         ),
       ],
       child: MyApp(isFirstLaunch: isFirstLaunch, initialPosition: position),

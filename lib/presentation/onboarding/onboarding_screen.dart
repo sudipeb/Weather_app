@@ -7,6 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/app_router.dart';
 import 'package:weather_app/core/constants/app_constants.dart';
 import 'package:weather_app/core/utilities/app_startup.dart';
+import 'package:weather_app/core/utilities/size_config.dart';
 import 'package:weather_app/presentation/onboarding/onboarding_barrel.dart';
 
 @RoutePage()
@@ -47,7 +48,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _initLocation() async {
     final pos = await AppStartup.getCurrentLocation();
-    print(pos);
     setState(() {
       position = pos;
     });
@@ -55,11 +55,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: ColorConstants.backGroundColor,
             body: PageView(
               controller: controller,
               onPageChanged: (index) {
@@ -83,7 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Text(
                       'Get Started',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: SizeConfig.heading3,
                         fontWeight: FontWeight.bold,
                         color: Color(0XFFC75D2C),
                       ),
@@ -127,10 +128,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       children: [
                         TextButton(
                           onPressed: () => controller.jumpToPage(2),
-                          child: const Text(
+                          child: Text(
                             'Skip',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: SizeConfig.heading3,
                               fontWeight: FontWeight.bold,
                               color: Color(0XFF000000),
                             ),
@@ -152,10 +153,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut,
                           ),
-                          child: const Text(
+                          child: Text(
                             'Next',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: SizeConfig.heading3,
                               fontWeight: FontWeight.bold,
                               color: Color(0XFF000000),
                             ),

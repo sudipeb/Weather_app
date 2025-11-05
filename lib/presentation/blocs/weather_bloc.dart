@@ -4,10 +4,9 @@ import 'package:weather_app/data/repositories/weather_repository.dart';
 import 'package:weather_app/presentation/blocs/weather_event.dart';
 import 'package:weather_app/presentation/blocs/weather_state.dart';
 
-/// BLoC for managing weather data state
+/// BLoC responsible for handling weather-related events and states.
 ///
-/// Handles fetching weather data for different locations and manages
-/// loading, success, and error states.
+/// Uses [WeatherRepository] to fetch weather data and manages
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository _weatherRepository;
 
@@ -19,7 +18,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<RefreshWeather>(_onRefreshWeather);
   }
 
-  /// Handles fetching weather data for a specific location
+  /// Handles fetching weather data for a given latitude and longitude.
+  /// Emits [WeatherLoading], then [WeatherLoaded] on success,
+  /// or [WeatherError] if an exception occurs.
   Future<void> _onFetchWeather(
     FetchWeather event,
     Emitter<WeatherState> emit,
@@ -87,7 +88,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     }
   }
 
-  /// Handles Dio exceptions and returns user-friendly error messages
+  /// Converts [DioException] into user-friendly messages.
   String _handleDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
